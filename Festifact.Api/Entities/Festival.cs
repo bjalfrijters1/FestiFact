@@ -1,12 +1,13 @@
-﻿using Festifact.Api.Entities.Enums;
+﻿using Festifact.Api.Extensions.Enums;
 using System.ComponentModel.DataAnnotations.Schema;
-using Type = Festifact.Api.Entities.Enums.Type;
+using Type = Festifact.Api.Extensions.Enums.Type;
 
 namespace Festifact.Api.Entities
 {
     public class Festival
     {
         public int Id { get; set; }
+        [ForeignKey("Organiser")]
         public int OrganiserId { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
@@ -18,10 +19,5 @@ namespace Festifact.Api.Entities
         public DateTime? startDate { get; set; }
         public DateTime? endDate { get; set; }
         public List<Location>? Locations { get; set; }
-
-        [ForeignKey("OrganiserId")]
-        public Organiser Organiser { get; set; }
-
-
     }
 }

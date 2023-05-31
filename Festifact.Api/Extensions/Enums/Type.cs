@@ -1,4 +1,4 @@
-﻿namespace Festifact.Models.Dtos.Enums
+﻿namespace Festifact.Api.Extensions.Enums
 {
     public enum Type
     {

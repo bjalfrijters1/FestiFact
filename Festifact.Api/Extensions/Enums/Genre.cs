@@ -1,4 +1,4 @@
-﻿namespace Festifact.Api.Entities.Enums
+﻿namespace Festifact.Api.Extensions.Enums
 {
     public enum Genre
     {
