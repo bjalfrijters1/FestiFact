@@ -156,5 +156,63 @@ namespace Festifact.Api.Extensions
                 sDescription = show.Description
             };
         }
+
+        public static FilmDto ConvertToDto(this Film film)
+        {
+            return new FilmDto
+            {
+                Id = film.Id,
+                Name = film.Name,
+                Description = film.Description,
+                Director = film.Director,
+                Year = film.Year,
+                CountryOfOrigin = film.CountryOfOrigin,
+                Actors = film.Actors
+            };
+        }
+
+        public static IEnumerable<FilmDto> ConvertToDto(this IEnumerable<Film> films) 
+        {
+            return (from film in films
+                    select new FilmDto
+                    {
+                        Id = film.Id,
+                        Name = film.Name,
+                        Description = film.Description,
+                        Director = film.Director,
+                        Year = film.Year,
+                        CountryOfOrigin = film.CountryOfOrigin,
+                        Actors = film.Actors
+                    });
+        }
+
+        public static PerformerDto ConvertToDto(this Performer performer)
+        {
+            return new PerformerDto
+            {
+                Id = performer.Id,
+                Name = performer.Name,
+                Description = performer.Description,
+                ImageFilePath = performer.ImageFilePath,
+                CountryOfOrigin = performer.CountryOfOrigin,
+                Type = (int)performer.Type,
+                Genre = (int)performer.Genre
+            };
+        }
+
+        public static IEnumerable<PerformerDto> ConvertToDto(this IEnumerable<Performer> performers)
+        {
+            return (from performer in performers
+                    select new PerformerDto
+                    {
+                        Id = performer.Id,
+                        Name = performer.Name,
+                        Description = performer.Description,
+                        ImageFilePath = performer.ImageFilePath,
+                        CountryOfOrigin = performer.CountryOfOrigin,
+                        Type = (int)performer.Type,
+                        Genre = (int)performer.Genre
+                    });
+        }
     }
 }
