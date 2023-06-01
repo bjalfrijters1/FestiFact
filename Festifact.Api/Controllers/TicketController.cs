@@ -4,6 +4,7 @@ using Festifact.Api.Migrations;
 using Festifact.Api.Repositories.Contracts;
 using Festifact.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Festifact.Api.Controllers
 {
@@ -34,7 +35,10 @@ namespace Festifact.Api.Controllers
                 else
                 {
                     var ticketDto = tickets.ConvertToDto(festival);
-                    return Ok(ticketDto);
+                    if (ticketDto != null)
+                        return Ok(ticketDto);
+                    else
+                        return NotFound();
                 }
             }
             catch (Exception ex)

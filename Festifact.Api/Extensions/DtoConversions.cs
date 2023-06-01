@@ -233,5 +233,17 @@ namespace Festifact.Api.Extensions
                 FestivalId = ticket.FestivalId
             };
         }
+
+        public static UserDto ConvertToDto(this User user)
+        {
+            return new UserDto
+            {
+                Id = user.Id,
+                Name = user.Name,
+                Email = user.Email,
+                DateOfBirth = user.DateOfBirth,
+                Address = user.Address
+            };
+        }
     }
 }
