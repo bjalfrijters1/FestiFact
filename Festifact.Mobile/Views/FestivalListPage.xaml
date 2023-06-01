@@ -15,10 +15,14 @@
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="models:Festival">
                 <Grid Padding="20,0,0,0"
-                      ColumnDefinitions="0.9*, 0.1*">
-                    <Label x:Name="lblName"
-                           Text="{Binding Name}" 
-                           VerticalTextAlignment="Center" />
+                      ColumnDefinitions="0.9*"
+                      RowDefinitions="*, *, *">
+                    <Label Text="{Binding Name}" 
+                           />
+                    <Label Text="{Binding Description}" 
+                           Grid.Row="1"/>
+                    <Label Text="{Binding OrganiserName}" 
+                           Grid.Row="2" />
                 </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>

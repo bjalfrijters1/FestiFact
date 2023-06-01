@@ -11,7 +11,6 @@ namespace Festifact.Api.Entities
         public string? ImageFilePath { get; set; }
         public string CountryOfOrigin { get; set; }
         public Type Type { get; set; }
-
         public Genre Genre { get; set; }
 
     }

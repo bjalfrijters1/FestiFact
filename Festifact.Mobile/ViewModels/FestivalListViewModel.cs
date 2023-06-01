@@ -40,7 +40,7 @@ namespace Festifact.Mobile.ViewModels
 
             var navigationParameter = new Dictionary<string, object>
             {
-                { nameof(festival), festival }
+                { nameof(Festival), festival }
             };
 
             try

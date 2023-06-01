@@ -4,6 +4,7 @@ using Festifact.Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Festifact.Api.Migrations
 {
     [DbContext(typeof(FestifactDbContext))]
-    partial class FestifactDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230601090040_Added MaxTickets to Festival")]
+    partial class AddedMaxTicketstoFestival
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,12 +104,6 @@ namespace Festifact.Api.Migrations
                             Id = 1,
                             FestivalId = 1,
                             ShowId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            FestivalId = 1,
-                            ShowId = 2
                         });
                 });
 
@@ -309,10 +306,6 @@ namespace Festifact.Api.Migrations
                     b.Property<int>("LocationId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("PerformerId")
                         .HasColumnType("int");
 
@@ -328,21 +321,11 @@ namespace Festifact.Api.Migrations
                         {
                             Id = 1,
                             Description = "Show by Coolio",
-                            EndDateTime = new DateTime(2023, 6, 1, 14, 55, 13, 183, DateTimeKind.Local).AddTicks(4418),
-                            LocationId = 1,
-                            Name = "Coolio",
-                            PerformerId = 1,
-                            StartDateTime = new DateTime(2023, 6, 1, 12, 55, 13, 183, DateTimeKind.Local).AddTicks(4369)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Film",
-                            EndDateTime = new DateTime(2023, 6, 1, 14, 55, 13, 183, DateTimeKind.Local).AddTicks(4433),
+                            EndDateTime = new DateTime(2023, 6, 1, 13, 0, 40, 607, DateTimeKind.Local).AddTicks(8715),
                             FilmId = 1,
                             LocationId = 1,
-                            Name = "Film",
-                            StartDateTime = new DateTime(2023, 6, 1, 12, 55, 13, 183, DateTimeKind.Local).AddTicks(4431)
+                            PerformerId = 1,
+                            StartDateTime = new DateTime(2023, 6, 1, 11, 0, 40, 607, DateTimeKind.Local).AddTicks(8672)
                         });
                 });
 
@@ -407,7 +390,7 @@ namespace Festifact.Api.Migrations
                         {
                             Id = 1,
                             Address = "Hogeschoollaan 1",
-                            DateOfBirth = new DateTime(2003, 6, 1, 12, 55, 13, 183, DateTimeKind.Local).AddTicks(4465),
+                            DateOfBirth = new DateTime(2003, 6, 1, 11, 0, 40, 607, DateTimeKind.Local).AddTicks(8745),
                             Email = "piet@test.nl",
                             Name = "Piet"
                         });

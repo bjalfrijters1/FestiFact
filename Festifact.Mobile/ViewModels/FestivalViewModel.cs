@@ -12,6 +12,9 @@ namespace Festifact.Mobile.ViewModels
     [QueryProperty(nameof(Festival), "Festival")]
     public class FestivalViewModel : BaseViewModel
     {
+        public ICommand FavouritesCommand { get; set; }
+        public ICommand OrderCommand { get; set; }
+
         private readonly IFestivalService _festivalService;
         private readonly FestivalListViewModel _festivalListViewModel;
 
@@ -19,6 +22,9 @@ namespace Festifact.Mobile.ViewModels
         {
             _festivalService = festivalService;
             _festivalListViewModel = festivalListViewModel;
+
+            FavouritesCommand = new Command(async () => await FavouriteFestival());
+            OrderCommand = new Command(async () => await OrderTicket());
         }
 
         private Festival _festival;
@@ -29,7 +35,21 @@ namespace Festifact.Mobile.ViewModels
             set
             {
                 _festival = value;
+                Title = "Cool story bro";
+                OnPropertyChanged();
             }
+        }
+
+        private async Task FavouriteFestival()
+        {
+            //add command to save to favourites (local pref OR create table and put in api)
+            await Shell.Current.GoToAsync("..");
+        }
+
+        private async Task OrderTicket()
+        {
+            //add command to add a ticket to tickets.
+            await Shell.Current.GoToAsync("..");
         }
     }
 }

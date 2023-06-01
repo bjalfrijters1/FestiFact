@@ -5,13 +5,9 @@ namespace Festifact.Api.Entities
     public class FestivalPerformance
     {
         public int Id { get; set; }
+        [ForeignKey("Festival")]
         public int FestivalId { get; set; }
+        [ForeignKey("Show")]
         public int ShowId { get; set; }
-
-        [ForeignKey("FestivalId")]
-        public Festival Festival { get; set; }
-      
-        [ForeignKey("ShowId")]
-        public Show Show { get; set; }
     }
 }

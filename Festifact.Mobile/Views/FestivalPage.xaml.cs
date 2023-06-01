@@ -4,10 +4,10 @@ namespace Festifact.Mobile.Views;
 
 public partial class FestivalPage : ContentPage
 {
-	public FestivalPage()
+	public FestivalPage(FestivalViewModel viewModel)
 	{
 		InitializeComponent();
-		
+		BindingContext = viewModel;
 
 	}
 }

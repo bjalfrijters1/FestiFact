@@ -16,8 +16,9 @@ namespace Festifact.Api.Entities
         public Type Type { get; set; }
         public Genre Genre { get; set; }
         public string? AgeCategory { get; set; }
-        public DateTime? startDate { get; set; }
-        public DateTime? endDate { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
         public List<Location>? Locations { get; set; }
+        public int MaxTickets { get; set; }
     }
 }

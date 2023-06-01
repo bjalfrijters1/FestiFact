@@ -5,8 +5,8 @@
         public AppShell()
         {
             InitializeComponent();
-            //Routing.RegisterRoute(nameof(Views.NotePage), typeof(Views.NotePage));
-            Routing.RegisterRoute(nameof(Views.FestivalListPage), typeof(Views.FestivalListPage));
+            
+            Routing.RegisterRoute(nameof(Views.FestivalPage), typeof(Views.FestivalPage));
         }
     }
 }

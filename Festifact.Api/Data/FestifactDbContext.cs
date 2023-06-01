@@ -68,8 +68,21 @@ namespace Festifact.Api.Data
                 Id = 1,
                 LocationId = 1,
                 PerformerId = 1,
-                FilmId = 1,
+                Name = "Coolio",
+                FilmId = null,
                 Description = "Show by Coolio",
+                StartDateTime = DateTime.Now,
+                EndDateTime = DateTime.Now.AddHours(2)
+            });
+
+            modelBuilder.Entity<Show>().HasData(new Show
+            {
+                Id = 2,
+                LocationId = 1,
+                FilmId = 1,
+                Name = "Film",
+                PerformerId = null,
+                Description = "Film",
                 StartDateTime = DateTime.Now,
                 EndDateTime = DateTime.Now.AddHours(2)
             });
@@ -80,6 +93,13 @@ namespace Festifact.Api.Data
                 Id = 1,
                 FestivalId = 1,
                 ShowId = 1
+            });
+
+            modelBuilder.Entity<FestivalPerformance>().HasData(new FestivalPerformance
+            {
+                Id = 2,
+                FestivalId = 1,
+                ShowId = 2
             });
 
             modelBuilder.Entity<User>().HasData(new User

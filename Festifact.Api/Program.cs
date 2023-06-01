@@ -20,6 +20,12 @@ builder.Services.AddDbContextPool<FestifactDbContext>(options =>
 
 builder.Services.AddScoped<IFestivalRepository, FestivalRepository>();
 builder.Services.AddScoped<IOrganiserRepository, OrganiserRepository>();
+builder.Services.AddScoped<IShowRepository, ShowRepository>();
+builder.Services.AddScoped<ILocationRepository, LocationRepository>();
+builder.Services.AddScoped<IPerformerRepository, PerformerRepository>();
+builder.Services.AddScoped<IFilmRepository, FilmRepository>();
+builder.Services.AddScoped<IFestivalPerformanceRepository, FestivalPerformanceRepository>();
+
 
 var app = builder.Build();
 

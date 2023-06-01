@@ -4,7 +4,7 @@
 			 x:Class="Festifact.Mobile.Views.FestivalPage" 
              xmlns:vm="clr-namespace:Festifact.Mobile.ViewModels"
              x:DataType="vm:FestivalViewModel"
-			 Title="Cool festival bro">
+			 Title="{Binding Title}">
     <ContentPage.Resources>
         <Style TargetType="Label">
             <Setter Property="Margin"
@@ -20,10 +20,14 @@
         </Style>
     </ContentPage.Resources>
     <VerticalStackLayout Margin="20">
-        <Label Text="Name" />
-        <Entry Text="Should be binding" 
-               Placeholder="Enter item" />
-        <Label Text="Notes" />
-        
+        <Label Text="Festivalnaam"/>
+        <Label Text="{Binding Path=Festival.Name}"
+               FontSize="16" FontAttributes="None"/>
+        <Label Text="Beschrijving" />
+        <Label Text="{Binding Path=Festival.Description}"
+               FontSize="16" FontAttributes="None"/>
+        <Label Text="Organisator" />
+        <Label Text="{Binding Path=Festival.OrganiserName}"
+               FontSize="16" FontAttributes="None"/>
     </VerticalStackLayout>
 </ContentPage>
