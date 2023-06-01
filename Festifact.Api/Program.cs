@@ -25,6 +25,7 @@ builder.Services.AddScoped<ILocationRepository, LocationRepository>();
 builder.Services.AddScoped<IPerformerRepository, PerformerRepository>();
 builder.Services.AddScoped<IFilmRepository, FilmRepository>();
 builder.Services.AddScoped<IFestivalPerformanceRepository, FestivalPerformanceRepository>();
+builder.Services.AddScoped<ITicketRepository, TicketRepository>();
 
 
 var app = builder.Build();

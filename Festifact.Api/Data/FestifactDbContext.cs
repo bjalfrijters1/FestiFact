@@ -29,7 +29,8 @@ namespace Festifact.Api.Data
                 Name = "bar",
                 Description = "baz",
                 Type = 0,
-                Genre = 0
+                Genre = 0,
+                MaxTickets = 250
 
             });
 

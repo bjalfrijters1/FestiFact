@@ -214,5 +214,24 @@ namespace Festifact.Api.Extensions
                         Genre = (int)performer.Genre
                     });
         }
+
+        public static IEnumerable<TicketDto> ConvertToDto(this IEnumerable<Ticket> tickets, Festival festival)
+        {
+            return (from ticket in tickets
+                    select new TicketDto
+                    {
+                        Id = ticket.Id,
+                        FestivalId = festival.Id,
+                    }).ToList();
+        }
+
+        public static TicketDto ConvertToDto(this Ticket ticket)
+        {
+            return new TicketDto
+            {
+                Id = ticket.Id,
+                FestivalId = ticket.FestivalId
+            };
+        }
     }
 }
