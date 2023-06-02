@@ -29,5 +29,8 @@
         <Label Text="Organisator" />
         <Label Text="{Binding Path=Festival.OrganiserName}"
                FontSize="16" FontAttributes="None"/>
+        <Button Text="Order Ticket"
+                Command="{Binding OrderCommand}"/>
+        
     </VerticalStackLayout>
 </ContentPage>

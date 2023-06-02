@@ -10,6 +10,7 @@ using System.Windows.Input;
 namespace Festifact.Mobile.ViewModels
 {
     [QueryProperty(nameof(Festival), "Festival")]
+    [QueryProperty(nameof(Ticket), "Ticket")]
     public class FestivalViewModel : BaseViewModel
     {
         public ICommand FavouritesCommand { get; set; }
@@ -28,6 +29,7 @@ namespace Festifact.Mobile.ViewModels
         }
 
         private Festival _festival;
+        private Ticket _ticket;
 
         public Festival Festival
         {
@@ -40,15 +42,26 @@ namespace Festifact.Mobile.ViewModels
             }
         }
 
+        public Ticket Ticket
+        {
+            get => _ticket;
+            set
+            {
+                _ticket = value;
+                OnPropertyChanged();
+            }
+        }
+
         private async Task FavouriteFestival()
         {
-            //add command to save to favourites (local pref OR create table and put in api)
+           
             await Shell.Current.GoToAsync("..");
         }
 
         private async Task OrderTicket()
         {
             //add command to add a ticket to tickets.
+            await _festivalService.SaveTicketAsync(Festival.Id);
             await Shell.Current.GoToAsync("..");
         }
     }

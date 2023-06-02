@@ -10,5 +10,6 @@ namespace Festifact.Mobile.Services.Contracts
     public interface IRestService
     {
         Task<List<Festival>> RefreshDataAsync();
+        Task SaveTicketAsync(int id);
     }
 }

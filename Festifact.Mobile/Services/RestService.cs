@@ -46,7 +46,7 @@ namespace Festifact.Mobile.Services
         {
             Festivals = new List<Festival>();
 
-            Uri uri = new Uri(string.Format(Constants.RestUrl, string.Empty));
+            Uri uri = new Uri(string.Format(Constants.RestUrl, "Festival", string.Empty));
 
             try
             {
@@ -63,6 +63,31 @@ namespace Festifact.Mobile.Services
             }
 
             return Festivals;
+        }
+
+        public async Task SaveTicketAsync(int id)
+        {
+            Uri uri = new Uri(string.Format(Constants.RestUrl, "Ticket", string.Empty));
+
+            try
+            {
+                var jsonTicket = new Dictionary<string, object>()
+                {
+                    { "FestivalId", id } 
+                };
+                string json = JsonSerializer.Serialize(jsonTicket, _serializerOptions);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = null;
+                response = await _httpClient.PostAsync(uri, content);
+
+                if (response.IsSuccessStatusCode)
+                    Debug.WriteLine(@"\tTicket successfully saved.");
+            } 
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
         }
 
         public Task SaveFestivalItemAsync(Festival festival, bool isNewItem)

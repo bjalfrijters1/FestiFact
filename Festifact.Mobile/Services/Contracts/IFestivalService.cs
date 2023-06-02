@@ -10,6 +10,7 @@ namespace Festifact.Mobile.Services.Contracts
     public interface IFestivalService
     {
         Task<List<Festival>> GetFestivalsAsync();
+        Task SaveTicketAsync(int id);
 
     }
 }
