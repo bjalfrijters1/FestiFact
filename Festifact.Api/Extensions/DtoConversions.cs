@@ -24,6 +24,20 @@ namespace Festifact.Api.Extensions
 
         }
 
+        public static FestivalDto ConvertToDto(this Festival festival)
+        {
+            return new FestivalDto
+            {
+                Id = festival.Id,
+                Name = festival.Name,
+                Description = festival.Description,
+                Genre = (int)festival.Genre,
+                Type = (int)festival.Type,
+                startDate = festival.StartDate,
+                endDate = festival.EndDate
+            };
+        }
+
         public static FestivalDto ConvertToDto(this Festival festival, Organiser organiser)
         {
             return new FestivalDto

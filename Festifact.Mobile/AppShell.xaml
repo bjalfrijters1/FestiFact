@@ -5,9 +5,20 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:Festifact.Mobile.Views"
     Shell.FlyoutBehavior="Disabled">
-
-    <ShellContent
+    <TabBar>
+        <ShellContent
             Title="Festival"
             ContentTemplate="{DataTemplate views:FestivalListPage}"
             Route="MainPage" />
+        <ShellContent
+            Title="User"
+            ContentTemplate="{DataTemplate views:UserPage}"
+            Icon="{OnPlatform 'icon_notes.png', iOS='icon_notes_ios.png', MacCatalyst='icon_notes_ios.png'}"
+            />
+        <ShellContent
+            Title="Shows"
+            ContentTemplate="{DataTemplate views:ShowListPage}"
+            Icon="{OnPlatform 'icon_notes.png', iOS='icon_notes_ios.png', MacCatalyst='icon_notes_ios.png'}" />
+    </TabBar>
+        
 </Shell>

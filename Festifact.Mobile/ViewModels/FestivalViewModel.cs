@@ -10,7 +10,6 @@ using System.Windows.Input;
 namespace Festifact.Mobile.ViewModels
 {
     [QueryProperty(nameof(Festival), "Festival")]
-    [QueryProperty(nameof(Ticket), "Ticket")]
     public class FestivalViewModel : BaseViewModel
     {
         public ICommand FavouritesCommand { get; set; }
@@ -29,7 +28,6 @@ namespace Festifact.Mobile.ViewModels
         }
 
         private Festival _festival;
-        private Ticket _ticket;
 
         public Festival Festival
         {
@@ -38,16 +36,6 @@ namespace Festifact.Mobile.ViewModels
             {
                 _festival = value;
                 Title = "Cool story bro";
-                OnPropertyChanged();
-            }
-        }
-
-        public Ticket Ticket
-        {
-            get => _ticket;
-            set
-            {
-                _ticket = value;
                 OnPropertyChanged();
             }
         }

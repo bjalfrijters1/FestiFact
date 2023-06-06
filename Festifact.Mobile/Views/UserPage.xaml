@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Festifact.Mobile.Views.UserPage"
+             xmlns:vm="clr-namespace:Festifact.Mobile.ViewModels"
+             x:DataType="vm:UserViewModel"
+             Title="{Binding Title}">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Margin"
+                    Value="0,10,0,10" />
+            <Setter Property="FontAttributes"
+                    Value="Bold" />
+            <Setter Property="FontSize"
+                    Value="20" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin"
+                    Value="0,5,0,5" />
+        </Style>
+    </ContentPage.Resources>
+    <VerticalStackLayout Margin="20">
+        <Label Text="Naam"/>
+        <Entry Text="{Binding User.Name}"
+               FontSize="16" FontAttributes="None"/>
+        <Label Text="Email" />
+        <Entry Text="{Binding User.Email}"
+               FontSize="16" FontAttributes="None"/>
+        <Label Text="DoB" />
+        <Entry Text="{Binding User.DateOfBirth}"
+               FontSize="16" FontAttributes="None"/>
+        <Label Text="Address"/>
+        <Entry Text="{Binding User.Address}" />
+        <Button Text="Save Info"
+                Command="{Binding SaveCommand}"/>
+    </VerticalStackLayout>
+</ContentPage>

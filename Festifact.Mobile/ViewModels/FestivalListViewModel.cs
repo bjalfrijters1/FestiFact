@@ -1,4 +1,5 @@
-﻿using Festifact.Mobile.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Festifact.Mobile.Models;
 using Festifact.Mobile.Services.Contracts;
 using System;
 using System.Collections.Generic;

@@ -53,14 +53,24 @@ namespace Festifact.Api.Controllers
                 var newFP = await this.fpRepo.Insert(fpToAddDto);
                 var festival = await this.festivalRepo.GetFestival(fId);
                 var show = await this.showRepo.GetShow(sId);
+
+                
                 if(newFP == null)
                 {
                     return NoContent();
                 }
 
-                var newFPDto = newFP.ConvertToDto(festival, show);
+                //check for date overlap
+                if (show.StartDateTime >= festival.StartDate && show.EndDateTime <= festival.EndDate)
+                {
+                    var newFPDto = newFP.ConvertToDto(festival, show);
 
-                return CreatedAtAction(nameof(GetFP), new { id = newFPDto.Id }, newFPDto);
+                    return CreatedAtAction(nameof(GetFP), new { id = newFPDto.Id }, newFPDto);
+                } else
+                {
+                    return NoContent();
+                }
+                
             }
             catch (Exception)
             {

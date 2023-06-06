@@ -5,6 +5,7 @@ using Festifact.Api.Repositories.Contracts;
 using Festifact.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel;
 
 namespace Festifact.Api.Controllers
 {
@@ -85,6 +86,38 @@ namespace Festifact.Api.Controllers
                 var newTicketDto = newTicket.ConvertToDto();
 
                 return CreatedAtAction(nameof(GetTicketById), new { id = newTicketDto.Id }, newTicketDto);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error retrieving from database");
+            }
+        }
+
+        [HttpGet]
+        [Route("/remaining/{id:int}")]
+        public async Task<ActionResult<int>> TicketsRemaining(int fId)
+        {
+            try
+            {
+                var allTickets = await this.ticketRepository.GetTickets();
+                IEnumerable<Ticket> soldTickets =
+                    from ticket in allTickets
+                    where ticket.FestivalId == fId
+                    select ticket;
+
+                var festival = await this.festivalRepository.GetFestival(fId);
+                var amountRemaining = festival.MaxTickets - soldTickets.Count();
+                // > 0 means there's more tickets left then sold, any other situation SHOULD NOT OCCUR
+                if (amountRemaining > 0)
+                {
+                    return Ok(amountRemaining);
+                }
+                else
+                {
+                    return NoContent();
+                }
+
             }
             catch (Exception ex)
             {

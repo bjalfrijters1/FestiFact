@@ -7,6 +7,8 @@
             InitializeComponent();
             
             Routing.RegisterRoute(nameof(Views.FestivalPage), typeof(Views.FestivalPage));
+            Routing.RegisterRoute(nameof(Views.UserPage), typeof(Views.UserPage));
+            Routing.RegisterRoute(nameof(Views.ShowPage), typeof(Views.ShowPage));
         }
     }
 }

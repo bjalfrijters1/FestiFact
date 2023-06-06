@@ -22,11 +22,19 @@ namespace Festifact.Mobile
             builder.Services.AddSingleton<IHttpsClientHandlerService, HttpsClientHandlerService>();
             builder.Services.AddSingleton<IRestService, RestService>();
             builder.Services.AddSingleton<IFestivalService, FestivalService>();
+            builder.Services.AddSingleton<IUserService, UserService>();
+            builder.Services.AddSingleton<IShowService, ShowService>();
 
             builder.Services.AddSingleton<FestivalListPage>();
             builder.Services.AddSingleton<FestivalListViewModel>();
             builder.Services.AddSingleton<FestivalPage>();
             builder.Services.AddSingleton<FestivalViewModel>();
+            builder.Services.AddSingleton<UserPage>();
+            builder.Services.AddSingleton<UserViewModel>();
+            builder.Services.AddSingleton<ShowListPage>();
+            builder.Services.AddSingleton<ShowListViewModel>();
+            builder.Services.AddSingleton<ShowPage>();
+            builder.Services.AddSingleton<ShowViewModel>();
 
 
 

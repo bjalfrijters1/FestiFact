@@ -77,5 +77,20 @@ namespace Festifact.Api.Controllers
                     "Error retrieving from database");
             }
         }
+
+        [HttpPut]
+        public async Task<ActionResult<FestivalDto>> Edit([FromBody] FestivalDto festivalDto, int id)
+        {
+            try
+            {
+                return NotFound();
+
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error retrieving from database");
+            }
+        }   
     }
 }

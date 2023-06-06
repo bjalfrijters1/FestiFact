@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -8,17 +9,17 @@ using System.Threading.Tasks;
 
 namespace Festifact.Mobile.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : ObservableObject, INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public new event PropertyChangedEventHandler PropertyChanged;
 
         private string _title;
         public string Title { get => _title; set { _title = value; OnPropertyChanged(); } }
 
         private bool _isLoading;
-        public bool isLoading { get => _isLoading; set { _isLoading = value; OnPropertyChanged(); } }
+        public bool IsLoading { get => _isLoading; set { _isLoading = value; OnPropertyChanged(); } }
 
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        protected new void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             var changed = PropertyChanged;
             if (changed == null)
@@ -26,5 +27,6 @@ namespace Festifact.Mobile.ViewModels
 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
     }
 }

@@ -58,5 +58,13 @@ namespace Festifact.Api.Controllers
                     "Error retrieving from database");
             }
         }
+
+        /*[HttpPut]
+        public async Task<ActionResult<UserDto>> Edit([FromBody] UserDto user)
+        {
+            //
+        }*/
+
+
     }
 }
