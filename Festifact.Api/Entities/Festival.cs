@@ -20,5 +20,6 @@ namespace Festifact.Api.Entities
         public DateTime? EndDate { get; set; }
         public List<Location>? Locations { get; set; }
         public int MaxTickets { get; set; }
+        public int TicketsRemaining { get; set; }
     }
 }

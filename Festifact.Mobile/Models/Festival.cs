@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Festifact.Mobile.Models
@@ -14,5 +15,6 @@ namespace Festifact.Mobile.Models
         public int Type { get; set; }
         public int Genre { get; set; }
         public string OrganiserName { get; set; }
+        public int TicketsRemaining { get; set; }
     }
 }

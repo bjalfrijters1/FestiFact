@@ -29,6 +29,8 @@
         <Label Text="Organisator" />
         <Label Text="{Binding Path=Festival.OrganiserName}"
                FontSize="16" FontAttributes="None"/>
+        <Label Text="Tickets left" />
+        <Label Text="{Binding Path=Festival.TicketsRemaining}" />
         <Button Text="Order Ticket"
                 Command="{Binding OrderCommand}"/>
         

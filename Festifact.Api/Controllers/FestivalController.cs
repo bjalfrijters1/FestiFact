@@ -1,4 +1,5 @@
-﻿using Festifact.Api.Extensions;
+﻿using Festifact.Api.Entities;
+using Festifact.Api.Extensions;
 using Festifact.Api.Repositories.Contracts;
 using Festifact.Models.Dtos;
 using Microsoft.AspNetCore.Http;
@@ -12,11 +13,13 @@ namespace Festifact.Api.Controllers
     {
         private readonly IFestivalRepository festivalRepository;
         private readonly IOrganiserRepository organiserRepository;
+        private readonly ITicketRepository ticketRepository;
 
-        public FestivalController(IFestivalRepository festivalRepository, IOrganiserRepository organiserRepository)
+        public FestivalController(IFestivalRepository festivalRepository, IOrganiserRepository organiserRepository, ITicketRepository ticketRepository)
         {
             this.festivalRepository = festivalRepository;
             this.organiserRepository = organiserRepository;
+            this.ticketRepository = ticketRepository;
         }
 
         [HttpGet("{id:int}")]
@@ -26,13 +29,13 @@ namespace Festifact.Api.Controllers
             {
                 var festival = await this.festivalRepository.GetFestival(id);
 
-
                 if (festival != null)
                 {
                     var organiser = await this.organiserRepository.GetOrganiserById(festival.OrganiserId);
                     if (organiser != null)
                     {
                         var festivalDto = festival.ConvertToDto(organiser);
+                        festivalDto.TicketsRemaining = await CalculateTicketsRemaining(id);
                         return Ok(festivalDto);
                     } else
                     {
@@ -67,6 +70,8 @@ namespace Festifact.Api.Controllers
                 else
                 {
                     var festivalDtos = festivals.ConvertToDto(organisers);
+                    festivalDtos.ToList().ForEach(async festivalDto =>
+                        festivalDto.TicketsRemaining = await CalculateTicketsRemaining(festivalDto.Id));
                     return Ok(festivalDtos);
                 }
 
@@ -91,6 +96,27 @@ namespace Festifact.Api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Error retrieving from database");
             }
-        }   
+        }  
+        
+        private async Task<int> CalculateTicketsRemaining(int id)
+        {
+            var allTickets = await this.ticketRepository.GetTickets();
+            IEnumerable<Ticket> soldTickets =
+                    from ticket in allTickets
+                    where ticket.FestivalId == id
+                    select ticket;
+
+            var festival = await this.festivalRepository.GetFestival(id);
+            var amountRemaining = festival.MaxTickets - soldTickets.Count();
+
+            if(amountRemaining > 0)
+            {
+                return amountRemaining;
+            } else
+            {
+                return -1;
+            }
+
+        }
     }
 }

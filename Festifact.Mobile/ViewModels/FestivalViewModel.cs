@@ -22,6 +22,7 @@ namespace Festifact.Mobile.ViewModels
         {
             _festivalService = festivalService;
             _festivalListViewModel = festivalListViewModel;
+            
 
             FavouritesCommand = new Command(async () => await FavouriteFestival());
             OrderCommand = new Command(async () => await OrderTicket());
@@ -34,6 +35,7 @@ namespace Festifact.Mobile.ViewModels
             get => _festival;
             set
             {
+
                 _festival = value;
                 Title = "Cool story bro";
                 OnPropertyChanged();
