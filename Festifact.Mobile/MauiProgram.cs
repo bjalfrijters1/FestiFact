@@ -36,6 +36,8 @@ namespace Festifact.Mobile
             builder.Services.AddSingleton<ShowPage>();
             builder.Services.AddSingleton<ShowViewModel>();
             builder.Services.AddSingleton<LoginPage>();
+            builder.Services.AddSingleton<FavouriteShowListPage>();
+            builder.Services.AddSingleton<FavouriteShowListViewModel>();
 
 
 

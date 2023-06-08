@@ -18,6 +18,7 @@ namespace Festifact.Mobile.ViewModels
         //public ICommand NewCommand();
         public ICommand SaveCommand { get; set; }
         public ICommand GetCommand { get; set; }
+        public ICommand FavouritesCommand { get; set; }
 
         private readonly IUserService _userService;
 
@@ -28,6 +29,7 @@ namespace Festifact.Mobile.ViewModels
 
             SaveCommand = new Command(async () => await SaveUser());
             GetCommand = new Command(async () => await FetchUser());
+            FavouritesCommand = new Command(async () => await GoToFavourites());
             OnPropertyChanged();
 
         }
@@ -58,6 +60,26 @@ namespace Festifact.Mobile.ViewModels
             User = await _userService.GetUserByEmailAsync(Email);
             await Shell.Current.GoToAsync("..");
         }
+        
+        private async Task GoToFavourites()
+        {
+            if (User == null) return;
+
+            var navigationParameter = new Dictionary<string, object>
+            {
+                { nameof(User), User }
+            };
+            try
+            {
+                await Shell.Current.GoToAsync(nameof(Views.FavouriteShowListPage), navigationParameter);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+        }
+
 
     }
 }

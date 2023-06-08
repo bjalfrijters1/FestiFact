@@ -17,9 +17,15 @@ namespace Festifact.Mobile.Services
             _restService = service;
         }
 
+        public Task<List<Show>> GetFavouriteShowsAsync(int userId)
+        {
+            return _restService.RefreshFavouriteShowsAsync(userId);
+        }
+
         public Task<List<Show>> GetShowsAsync()
         {
             return _restService.RefreshShowsAsync();
         }
+
     }
 }

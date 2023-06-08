@@ -10,6 +10,7 @@
             Routing.RegisterRoute(nameof(Views.UserPage), typeof(Views.UserPage));
             Routing.RegisterRoute(nameof(Views.ShowPage), typeof(Views.ShowPage));
             Routing.RegisterRoute(nameof(Views.LoginPage), typeof(Views.LoginPage));
+            Routing.RegisterRoute(nameof(Views.FavouriteShowListPage), typeof(Views.FavouriteShowListPage));
         }
     }
 }

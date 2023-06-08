@@ -68,6 +68,9 @@
 	  <MauiXaml Update="Views\AboutPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\FavouriteShowListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\FestivalListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

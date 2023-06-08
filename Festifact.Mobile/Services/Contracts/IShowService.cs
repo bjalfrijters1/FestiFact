@@ -10,6 +10,7 @@ namespace Festifact.Mobile.Services.Contracts
     public interface IShowService
     {
         Task<List<Show>> GetShowsAsync();
+        Task<List<Show>> GetFavouriteShowsAsync(int userId);
 
     }
 }

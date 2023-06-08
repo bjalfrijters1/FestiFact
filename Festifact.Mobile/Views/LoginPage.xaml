@@ -25,5 +25,7 @@
         <Entry Text="{Binding Email}" />
         <Button Text="Login"
                 Command="{Binding GetCommand}" />
+        <Button Text="Go to favourites"
+                Command="{Binding FavouritesCommand}"/>
     </VerticalStackLayout>
 </ContentPage>

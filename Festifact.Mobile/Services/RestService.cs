@@ -193,5 +193,28 @@ namespace Festifact.Mobile.Services
 
             return user;
         }
+
+        public async Task<List<Show>> RefreshFavouriteShowsAsync(int userId)
+        {
+            Shows = new List<Show>();
+
+            Uri uri = new Uri(string.Format(Constants.RestUrl, "FavouriteShow", userId));
+
+            try
+            {
+                HttpResponseMessage response = await _httpClient.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    Shows = JsonSerializer.Deserialize<List<Show>>(content, _serializerOptions);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
+
+            return Shows;
+        }
     }
 }

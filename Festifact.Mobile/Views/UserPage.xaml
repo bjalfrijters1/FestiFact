@@ -33,5 +33,6 @@
         <Entry Text="{Binding User.Address}" />
         <Button Text="Save Info"
                 Command="{Binding SaveCommand}"/>
+        
     </VerticalStackLayout>
 </ContentPage>
