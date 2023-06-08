@@ -24,6 +24,10 @@ namespace Festifact.Mobile.Services.Contracts
         Task<List<Show>> RefreshShowsAsync();
         Task<List<Show>> RefreshFavouriteShowsAsync(int userId);
 
+        //performers
+        Task<List<Performer>> RefreshFavouritePerformersAsync(int userId);
+        Task<List<Performer>> RefreshPerformersAsync();
+
 
     }
 }

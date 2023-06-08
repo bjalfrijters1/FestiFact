@@ -24,6 +24,7 @@ namespace Festifact.Mobile
             builder.Services.AddSingleton<IFestivalService, FestivalService>();
             builder.Services.AddSingleton<IUserService, UserService>();
             builder.Services.AddSingleton<IShowService, ShowService>();
+            builder.Services.AddSingleton<IPerformerService, PerformerService>();
 
             builder.Services.AddSingleton<FestivalListPage>();
             builder.Services.AddSingleton<FestivalListViewModel>();
@@ -38,9 +39,10 @@ namespace Festifact.Mobile
             builder.Services.AddSingleton<LoginPage>();
             builder.Services.AddSingleton<FavouriteShowListPage>();
             builder.Services.AddSingleton<FavouriteShowListViewModel>();
-
-
-
+            builder.Services.AddSingleton<FavouritePerformerListPage>();
+            builder.Services.AddSingleton<FavouritePerformerListViewModel>();
+            builder.Services.AddSingleton<PerformerPage>();
+            builder.Services.AddSingleton<PerformerViewModel>();
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif

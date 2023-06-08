@@ -33,6 +33,10 @@
         <Entry Text="{Binding User.Address}" />
         <Button Text="Save Info"
                 Command="{Binding SaveCommand}"/>
+        <Button Text="Go to favourite shows"
+                Command="{Binding FavouriteShowsCommand}"/>
+        <Button Text="Go to favourite performers" 
+                Command="{Binding FavouritePerformersCommand}"/>
         
     </VerticalStackLayout>
 </ContentPage>

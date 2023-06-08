@@ -19,6 +19,7 @@ namespace Festifact.Mobile.Services
 
         public List<Festival> Festivals { get; private set; }
         public List<Show> Shows { get; private set; }
+        public List<Performer> Performers { get; private set; }
 
         public RestService(IHttpsClientHandlerService service)
         {
@@ -215,6 +216,52 @@ namespace Festifact.Mobile.Services
             }
 
             return Shows;
+        }
+
+        public async Task<List<Performer>> RefreshFavouritePerformersAsync(int userId)
+        {
+            Performers = new List<Performer>();
+
+            Uri uri = new Uri(string.Format(Constants.RestUrl, "FavouritePerformer", userId));
+
+            try
+            {
+                HttpResponseMessage response = await _httpClient.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    Performers = JsonSerializer.Deserialize<List<Performer>>(content, _serializerOptions);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
+
+            return Performers;
+        }
+
+        public async Task<List<Performer>> RefreshPerformersAsync()
+        {
+            Performers = new List<Performer>();
+
+            Uri uri = new Uri(string.Format(Constants.RestUrl, "Performer", string.Empty));
+
+            try
+            {
+                HttpResponseMessage response = await _httpClient.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    Performers = JsonSerializer.Deserialize<List<Performer>>(content, _serializerOptions);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
+
+            return Performers;
         }
     }
 }

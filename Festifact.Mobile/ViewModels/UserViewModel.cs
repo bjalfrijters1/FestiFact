@@ -18,7 +18,8 @@ namespace Festifact.Mobile.ViewModels
         //public ICommand NewCommand();
         public ICommand SaveCommand { get; set; }
         public ICommand GetCommand { get; set; }
-        public ICommand FavouritesCommand { get; set; }
+        public ICommand FavouriteShowsCommand { get; set; }
+        public ICommand FavouritePerformersCommand { get; set; }
 
         private readonly IUserService _userService;
 
@@ -29,9 +30,37 @@ namespace Festifact.Mobile.ViewModels
 
             SaveCommand = new Command(async () => await SaveUser());
             GetCommand = new Command(async () => await FetchUser());
-            FavouritesCommand = new Command(async () => await GoToFavourites());
+            FavouriteShowsCommand = new Command(async () => await GoToFavourites());
+            FavouritePerformersCommand = new Command(async () => await GoToFavouritePerformers());
             OnPropertyChanged();
 
+        }
+
+        private async Task GoToFavouritePerformers()
+        {
+            if (User == null) return;
+
+            var navigationParameter = new Dictionary<string, object>
+            {
+                { nameof(User), User }
+            };
+            try
+            {
+                await Shell.Current.GoToAsync(nameof(Views.FavouritePerformerListPage), navigationParameter);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
+        private bool _isNewUser;
+
+        private bool IsNewUser(User user)
+        {
+            if (string.IsNullOrEmpty(user.Email))
+                return true;
+            return false;
         }
 
         private User _user;
@@ -41,6 +70,7 @@ namespace Festifact.Mobile.ViewModels
             get => _user;
             set
             {
+                _isNewUser = IsNewUser(value);
                 _user = value;
                 Title = "Add new user";
                 OnPropertyChanged();
@@ -58,9 +88,23 @@ namespace Festifact.Mobile.ViewModels
         private async Task FetchUser()
         {
             User = await _userService.GetUserByEmailAsync(Email);
-            await Shell.Current.GoToAsync("..");
+
+            if (User == null) return;
+
+            var navigationParameter = new Dictionary<string, object>
+            {
+                { nameof(User), User }
+            };
+            try
+            {
+                await Shell.Current.GoToAsync(nameof(Views.UserPage), navigationParameter);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
         }
-        
         private async Task GoToFavourites()
         {
             if (User == null) return;

@@ -7,18 +7,18 @@
     Shell.FlyoutBehavior="Disabled">
     <TabBar>
         <ShellContent
-            Title="Festival"
+            Title="Festivals"
             ContentTemplate="{DataTemplate views:FestivalListPage}"
             Route="MainPage" />
+        <ShellContent
+            Title="Shows"
+            ContentTemplate="{DataTemplate views:ShowListPage}"
+            Icon="{OnPlatform 'icon_notes.png', iOS='icon_notes_ios.png', MacCatalyst='icon_notes_ios.png'}" />
         <ShellContent
             Title="User"
             ContentTemplate="{DataTemplate views:UserPage}"
             Icon="{OnPlatform 'icon_notes.png', iOS='icon_notes_ios.png', MacCatalyst='icon_notes_ios.png'}"
             />
-        <ShellContent
-            Title="Shows"
-            ContentTemplate="{DataTemplate views:ShowListPage}"
-            Icon="{OnPlatform 'icon_notes.png', iOS='icon_notes_ios.png', MacCatalyst='icon_notes_ios.png'}" />
         <ShellContent
             Title="Login"
             ContentTemplate="{DataTemplate views:LoginPage}"
