@@ -12,6 +12,7 @@ namespace Festifact.Mobile.Services.Contracts
         Task<List<Show>> GetShowsAsync();
         Task<List<Show>> GetFavouriteShowsAsync(int userId);
         Task AddFavouriteShowAsync(int userId, int showId);
+        Task DeleteFavouriteShowAsync(int userId, int showId);
 
     }
 }

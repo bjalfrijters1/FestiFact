@@ -10,18 +10,17 @@ using System.Windows.Input;
 namespace Festifact.Mobile.ViewModels
 {
     [QueryProperty(nameof(Performer), "Performer")]
-    public class PerformerViewModel : BaseViewModel
+    public class FavouritePerformerViewModel : BaseViewModel
     {
-        public ICommand AddToFavouriteCommand { get; set; }
+        public ICommand RemoveCommand { get; set; }
 
         private readonly IPerformerService _performerService;
         private readonly UserViewModel _userViewModel;
 
-        public PerformerViewModel(IPerformerService performerService, UserViewModel userViewModel)
+        public FavouritePerformerViewModel(IPerformerService performerService, UserViewModel userViewModel)
         {
             _performerService = performerService;
-            //_performerListViewModel = performerListViewModel;
-            AddToFavouriteCommand = new Command(async () => await FavouritePerformer());
+            RemoveCommand = new Command(async () => await RemoveFromFavourites());
 
             _userViewModel = userViewModel;
         }
@@ -38,10 +37,10 @@ namespace Festifact.Mobile.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        private async Task FavouritePerformer()
+        
+        public async Task RemoveFromFavourites()
         {
-            await _performerService.AddFavouritePerformerAsync(_userViewModel.User.Id, Performer.Id);
+            await this._performerService.DeleteFavouritePerformerAsync(_userViewModel.User.Id, Performer.Id);
             await Shell.Current.GoToAsync("..");
         }
     }

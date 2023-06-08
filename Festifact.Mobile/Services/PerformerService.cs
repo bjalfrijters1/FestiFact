@@ -32,5 +32,10 @@ namespace Festifact.Mobile.Services
             return _restService.RefreshPerformersAsync();
         }
 
+        public Task DeleteFavouritePerformerAsync(int userId, int performerId)
+        {
+            return _restService.DeleteFavouritePerformerAsync(userId, performerId);
+        }
+
     }
 }

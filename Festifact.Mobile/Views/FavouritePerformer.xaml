@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-			 x:Class="Festifact.Mobile.Views.PerformerPage" 
+			 x:Class="Festifact.Mobile.Views.FavouritePerformer" 
              xmlns:vm="clr-namespace:Festifact.Mobile.ViewModels"
-             x:DataType="vm:PerformerViewModel"
+             x:DataType="vm:FavouritePerformerViewModel"
 			 Title="{Binding Title}">
     <ContentPage.Resources>
         <Style TargetType="Label">
@@ -26,9 +26,7 @@
         <Label Text="Performer description" />
         <Label Text="{Binding Path=Performer.Description}"
                FontSize="16" FontAttributes="None"/>
-        <Button Text="Add to favourite"
-                Command="{Binding AddToFavouriteCommand}" />
-        <!-- Button Text="Remove from favourite"
-                Command="{Binding RemoveFromFavouriteCommand}" /-->
+        <Button Text="Remove from favourites"
+                Command="{Binding RemoveCommand}" />
     </VerticalStackLayout>
 </ContentPage>

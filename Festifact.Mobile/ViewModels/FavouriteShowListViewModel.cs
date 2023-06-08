@@ -60,7 +60,7 @@ namespace Festifact.Mobile.ViewModels
 
             try
             {
-                await Shell.Current.GoToAsync(nameof(Views.ShowPage), navigationParameter);
+                await Shell.Current.GoToAsync(nameof(Views.FavouriteShowPage), navigationParameter);
             }
             catch (Exception ex)
             {

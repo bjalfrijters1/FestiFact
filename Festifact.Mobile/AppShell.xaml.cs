@@ -13,6 +13,9 @@
             Routing.RegisterRoute(nameof(Views.FavouriteShowListPage), typeof(Views.FavouriteShowListPage));
             Routing.RegisterRoute(nameof(Views.FavouritePerformerListPage), typeof(Views.FavouritePerformerListPage));
             Routing.RegisterRoute(nameof(Views.PerformerPage), typeof(Views.PerformerPage));
+            Routing.RegisterRoute(nameof(Views.FavouritePerformer), typeof(Views.FavouritePerformer));
+            Routing.RegisterRoute(nameof(Views.FavouriteShowPage), typeof(Views.FavouriteShowPage));
+
         }
     }
 }

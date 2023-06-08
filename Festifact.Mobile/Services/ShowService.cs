@@ -32,5 +32,9 @@ namespace Festifact.Mobile.Services
             return _restService.AddFavouriteShowAsync(userId, showId);
         }
 
+        public Task DeleteFavouriteShowAsync(int userId, int showId)
+        {
+            return _restService.DeleteFavouriteShowAsync(userId, showId);
+        }
     }
 }

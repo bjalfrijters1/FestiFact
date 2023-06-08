@@ -315,5 +315,43 @@ namespace Festifact.Mobile.Services
                 Debug.WriteLine(@"\tERROR {0}", ex.Message);
             }
         }
+
+        public async Task DeleteFavouriteShowAsync(int userId, int showId)
+        {
+            string formatHelp = string.Format("FavouriteShow/user/{0}/show/{1}", userId, showId);
+            Uri uri = new Uri(string.Format(Constants.RestUrl, formatHelp, string.Empty));
+
+            try
+            {
+                HttpResponseMessage response = null;
+                response = await _httpClient.DeleteAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                    Debug.WriteLine(@"\tFavourite successfully removed.");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
+        }
+
+        public async Task DeleteFavouritePerformerAsync(int userId, int performerId)
+        {
+            string formatHelp = string.Format("FavouritePerformer/user/{0}/performer/{1}", userId, performerId);
+            Uri uri = new Uri(string.Format(Constants.RestUrl, formatHelp, string.Empty));
+
+            try
+            {
+                HttpResponseMessage response = null;
+                response = await _httpClient.DeleteAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                    Debug.WriteLine(@"\tFavourite successfully removed.");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
+        }
     }
 }

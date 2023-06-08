@@ -12,5 +12,6 @@ namespace Festifact.Mobile.Services.Contracts
         Task<List<Performer>> GetPerformersAsync();
         Task<List<Performer>> GetFavouritePerformersAsync(int userId);
         Task AddFavouritePerformerAsync(int userId, int performerId);
+        Task DeleteFavouritePerformerAsync(int userId, int performerId);
     }
 }
