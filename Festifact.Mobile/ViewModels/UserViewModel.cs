@@ -15,6 +15,7 @@ namespace Festifact.Mobile.ViewModels
     {
         private string _email;
         public string Email { get => _email; set { _email = value; OnPropertyChanged(); } }
+
         //public ICommand NewCommand();
         public ICommand SaveCommand { get; set; }
         public ICommand GetCommand { get; set; }
@@ -55,7 +56,6 @@ namespace Festifact.Mobile.ViewModels
         }
 
         private bool _isNewUser;
-
         private bool IsNewUser(User user)
         {
             if (string.IsNullOrEmpty(user.Email))
@@ -63,8 +63,7 @@ namespace Festifact.Mobile.ViewModels
             return false;
         }
 
-        private User _user;
-
+        protected User _user;
         public User User
         {
             get => _user;
@@ -72,7 +71,6 @@ namespace Festifact.Mobile.ViewModels
             {
                 _isNewUser = IsNewUser(value);
                 _user = value;
-                Title = "Add new user";
                 OnPropertyChanged();
             }
         }
@@ -80,8 +78,7 @@ namespace Festifact.Mobile.ViewModels
         private async Task SaveUser()
         {
             
-            await _userService.SaveUserAsync(User, true);
-            //await _userService.GetUserAsync(User.Id);
+            await _userService.SaveUserAsync(User, _isNewUser);
             await Shell.Current.GoToAsync("..");
         }
 

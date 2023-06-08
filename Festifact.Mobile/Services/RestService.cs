@@ -263,5 +263,57 @@ namespace Festifact.Mobile.Services
 
             return Performers;
         }
+
+        public async Task AddFavouriteShowAsync(int userId, int showId)
+        {
+            Uri uri = new Uri(string.Format(Constants.RestUrl, "FavouriteShow", string.Empty));
+
+            try
+            {
+                var jsonFavouriteShow = new Dictionary<string, object>()
+                {
+                    { "UserId", userId },
+                    { "ShowId", showId }
+                };
+                string json = JsonSerializer.Serialize(jsonFavouriteShow, _serializerOptions);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = null;
+                response = await _httpClient.PostAsync(uri, content);
+
+                if (response.IsSuccessStatusCode)
+                    Debug.WriteLine(@"\tFavourite successfully saved.");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
+        }
+
+        public async Task AddFavouritePerformerAsync(int userId, int performerId)
+        {
+            Uri uri = new Uri(string.Format(Constants.RestUrl, "FavouritePerformer", string.Empty));
+
+            try
+            {
+                var jsonFavouriteShow = new Dictionary<string, object>()
+                {
+                    { "UserId", userId },
+                    { "PerformerId", performerId }
+                };
+                string json = JsonSerializer.Serialize(jsonFavouriteShow, _serializerOptions);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = null;
+                response = await _httpClient.PostAsync(uri, content);
+
+                if (response.IsSuccessStatusCode)
+                    Debug.WriteLine(@"\tFavourite successfully saved.");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
+        }
     }
 }

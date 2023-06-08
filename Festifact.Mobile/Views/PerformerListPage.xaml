@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="Festifact.Mobile.Views.FestivalListPage"
+             x:Class="Festifact.Mobile.Views.PerformerListPage"
              xmlns:vm="clr-namespace:Festifact.Mobile.ViewModels"
              xmlns:models="clr-namespace:Festifact.Mobile.Models"
-             x:DataType="vm:FestivalListViewModel"
-             Title="Festivals overview">
+             x:DataType="vm:PerformerListViewModel"
+             Title="Shows">
     <CollectionView x:Name="collectionView"
                     Margin="20"
-                    ItemsSource="{Binding Festivals}"
+                    ItemsSource="{Binding Performers}"
                     SelectionMode="Single"
-                    SelectionChangedCommand="{Binding SelectFestival}"
+                    SelectionChangedCommand="{Binding SelectPerformer}"
                     SelectionChangedCommandParameter="{Binding Path=SelectedItem, Source={RelativeSource Self}}">
         <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="models:Festival">
+            <DataTemplate x:DataType="models:Performer">
                 <Grid Padding="20,0,0,0"
                       ColumnDefinitions="0.9*"
                       RowDefinitions="*, *, *">
@@ -21,7 +21,7 @@
                            />
                     <Label Text="{Binding Description}" 
                            Grid.Row="1"/>
-                    <Label Text="{Binding OrganiserName}" 
+                    <Label Text="{Binding Genre}" 
                            Grid.Row="2" />
                 </Grid>
             </DataTemplate>

@@ -26,5 +26,7 @@
         <Label Text="Beschrijving" />
         <Label Text="{Binding Path=Show.Description}"
                FontSize="16" FontAttributes="None"/>
+        <Button Text="Add to favourites"
+                Command="{Binding AddToFavouriteCommand}"/>
     </VerticalStackLayout>
 </ContentPage>

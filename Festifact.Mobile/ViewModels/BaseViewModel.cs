@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Festifact.Mobile.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,8 @@ namespace Festifact.Mobile.ViewModels
 
         private bool _isLoading;
         public bool IsLoading { get => _isLoading; set { _isLoading = value; OnPropertyChanged(); } }
+
+        
 
         protected new void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {

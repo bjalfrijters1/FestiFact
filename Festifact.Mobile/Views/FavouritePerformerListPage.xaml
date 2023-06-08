@@ -5,7 +5,7 @@
              xmlns:vm="clr-namespace:Festifact.Mobile.ViewModels"
              xmlns:models="clr-namespace:Festifact.Mobile.Models"
              x:DataType="vm:FavouritePerformerListViewModel"
-             Title="Shows">
+             Title="Favourite shows">
     <CollectionView x:Name="collectionView"
                     Margin="20"
                     ItemsSource="{Binding Performers}"

@@ -12,19 +12,18 @@ namespace Festifact.Mobile.ViewModels
     [QueryProperty(nameof(Performer), "Performer")]
     public class PerformerViewModel : BaseViewModel
     {
-        //public ICommand FavouritesCommand { get; set; }
-        //public ICommand OrderCommand { get; set; }
+        public ICommand AddToFavouriteCommand { get; set; }
 
         private readonly IPerformerService _performerService;
-        //private readonly PerformerListViewModel _performerListViewModel;
+        private readonly UserViewModel _userViewModel;
 
-        public PerformerViewModel(IPerformerService performerService)
+        public PerformerViewModel(IPerformerService performerService, UserViewModel userViewModel)
         {
             _performerService = performerService;
             //_performerListViewModel = performerListViewModel;
 
-            //FavouritesCommand = new Command(async () => await FavouritePerformer());
-            //OrderCommand = new Command(async () => await OrderTicket());
+            AddToFavouriteCommand = new Command(async () => await FavouritePerformer());
+            _userViewModel = userViewModel;
         }
 
         private Performer _performer;
@@ -35,22 +34,15 @@ namespace Festifact.Mobile.ViewModels
             set
             {
                 _performer = value;
-                Title = "Cool story bro";
+                Title = _performer.Name;
                 OnPropertyChanged();
             }
         }
 
-        /*private async Task FavouritePerformer()
+        private async Task FavouritePerformer()
         {
-
+            await _performerService.AddFavouritePerformerAsync(_userViewModel.User.Id, Performer.Id);
             await Shell.Current.GoToAsync("..");
-        }*/
-
-        /*private async Task OrderTicket()
-        {
-            //add command to add a ticket to tickets.
-            await _performerService.SaveTicketAsync(Performer.Id);
-            await Shell.Current.GoToAsync("..");
-        }*/
+        }
     }
 }

@@ -20,11 +20,13 @@
         </Style>
     </ContentPage.Resources>
     <VerticalStackLayout Margin="20">
-        <Label Text="Shownaam"/>
+        <Label Text="Performer name"/>
         <Label Text="{Binding Path=Performer.Name}"
                FontSize="16" FontAttributes="None"/>
-        <Label Text="Beschrijving" />
+        <Label Text="Performer description" />
         <Label Text="{Binding Path=Performer.Description}"
                FontSize="16" FontAttributes="None"/>
+        <Button Text="Add to favourite"
+                Command="{Binding AddToFavouriteCommand}" />
     </VerticalStackLayout>
 </ContentPage>

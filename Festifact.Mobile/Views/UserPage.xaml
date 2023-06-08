@@ -4,7 +4,7 @@
              x:Class="Festifact.Mobile.Views.UserPage"
              xmlns:vm="clr-namespace:Festifact.Mobile.ViewModels"
              x:DataType="vm:UserViewModel"
-             Title="{Binding Title}">
+             Title="Your profile">
     <ContentPage.Resources>
         <Style TargetType="Label">
             <Setter Property="Margin"
@@ -26,7 +26,7 @@
         <Label Text="Email" />
         <Entry Text="{Binding User.Email}"
                FontSize="16" FontAttributes="None"/>
-        <Label Text="DoB" />
+        <Label Text="Date of Birth" />
         <Entry Text="{Binding User.DateOfBirth}"
                FontSize="16" FontAttributes="None"/>
         <Label Text="Address"/>

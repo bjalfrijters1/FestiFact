@@ -15,6 +15,10 @@
             ContentTemplate="{DataTemplate views:ShowListPage}"
             Icon="{OnPlatform 'icon_notes.png', iOS='icon_notes_ios.png', MacCatalyst='icon_notes_ios.png'}" />
         <ShellContent
+            Title="Performers"
+            ContentTemplate="{DataTemplate views:PerformerListPage}"
+            Icon="{OnPlatform 'icon_notes.png', iOS='icon_notes_ios.png', MacCatalyst='icon_notes_ios.png'}" />
+        <ShellContent
             Title="User"
             ContentTemplate="{DataTemplate views:UserPage}"
             Icon="{OnPlatform 'icon_notes.png', iOS='icon_notes_ios.png', MacCatalyst='icon_notes_ios.png'}"

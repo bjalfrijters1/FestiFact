@@ -17,6 +17,11 @@ namespace Festifact.Mobile.Services
             _restService = service;
         }
 
+        public Task AddFavouritePerformerAsync(int userId, int performerId)
+        {
+            return _restService.AddFavouritePerformerAsync(userId, performerId);
+        }
+
         public Task<List<Performer>> GetFavouritePerformersAsync(int userId)
         {
             return _restService.RefreshFavouritePerformersAsync(userId);

@@ -43,6 +43,9 @@ namespace Festifact.Mobile
             builder.Services.AddSingleton<FavouritePerformerListViewModel>();
             builder.Services.AddSingleton<PerformerPage>();
             builder.Services.AddSingleton<PerformerViewModel>();
+            builder.Services.AddSingleton<PerformerListPage>();
+            builder.Services.AddSingleton<PerformerListViewModel>();
+
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif

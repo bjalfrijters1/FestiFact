@@ -12,19 +12,19 @@ namespace Festifact.Mobile.ViewModels
     [QueryProperty(nameof(Show), "Show")]
     public class ShowViewModel : BaseViewModel
     {
-        //public ICommand FavouritesCommand { get; set; }
-        //public ICommand OrderCommand { get; set; }
+        public ICommand AddToFavouriteCommand { get; set; }
 
         private readonly IShowService _showService;
         private readonly ShowListViewModel _showListViewModel;
+        private readonly UserViewModel _userViewModel;
 
-        public ShowViewModel(IShowService showService, ShowListViewModel showListViewModel)
+        public ShowViewModel(IShowService showService, ShowListViewModel showListViewModel, UserViewModel userViewModel)
         {
             _showService = showService;
             _showListViewModel = showListViewModel;
 
-            //FavouritesCommand = new Command(async () => await FavouriteShow());
-            //OrderCommand = new Command(async () => await OrderTicket());
+            AddToFavouriteCommand = new Command(async () => await AddFavouriteShow());
+            _userViewModel = userViewModel;
         }
 
         private Show _show;
@@ -40,17 +40,10 @@ namespace Festifact.Mobile.ViewModels
             }
         }
 
-        /*private async Task FavouriteShow()
+        private async Task AddFavouriteShow()
         {
-
+            await _showService.AddFavouriteShowAsync(_userViewModel.User.Id, Show.Id);
             await Shell.Current.GoToAsync("..");
-        }*/
-
-        /*private async Task OrderTicket()
-        {
-            //add command to add a ticket to tickets.
-            await _showService.SaveTicketAsync(Show.Id);
-            await Shell.Current.GoToAsync("..");
-        }*/
+        }
     }
 }

@@ -37,7 +37,7 @@ namespace Festifact.Mobile.ViewModels
             {
 
                 _festival = value;
-                Title = "Cool story bro";
+                Title = _festival.Name;
                 OnPropertyChanged();
             }
         }

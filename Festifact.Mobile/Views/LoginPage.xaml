@@ -4,7 +4,7 @@
              x:Class="Festifact.Mobile.Views.LoginPage"
              xmlns:vm="clr-namespace:Festifact.Mobile.ViewModels"
              x:DataType="vm:UserViewModel"
-             Title="LoginPage">
+             Title="Login">
     <ContentPage.Resources>
         <Style TargetType="Label">
             <Setter Property="Margin"
