@@ -7,5 +7,6 @@ namespace Festifact.Api.Repositories.Contracts
     {
         Task<User> GetUser(int id);
         Task<User> Insert(UserToAddDto user);
+        Task<User> GetUserByEmail(string email);
     }
 }

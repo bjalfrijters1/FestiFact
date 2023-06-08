@@ -30,5 +30,10 @@ namespace Festifact.Mobile.Services
         {
             return _restService.SaveUserAsync(user, isNewUser);
         }
+
+        public Task<User> GetUserByEmailAsync(string email)
+        {
+            return _restService.GetUserByEmailAsync(email);
+        }
     }
 }

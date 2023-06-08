@@ -59,6 +59,27 @@ namespace Festifact.Api.Controllers
             }
         }
 
+        [HttpGet("{email}")]
+        public async Task<ActionResult<UserDto>> GetUserByEmail(string email)
+        {
+            try
+            {
+                var user = await this._userRepository.GetUserByEmail(email);
+
+                if (user == null)
+                    return NotFound();
+                else
+                {
+                    var userDto = user.ConvertToDto();
+                    return Ok(userDto);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error retrieving from database");
+            }
+        }
         /*[HttpPut]
         public async Task<ActionResult<UserDto>> Edit([FromBody] UserDto user)
         {

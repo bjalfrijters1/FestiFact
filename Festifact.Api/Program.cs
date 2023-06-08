@@ -27,7 +27,8 @@ builder.Services.AddScoped<IFilmRepository, FilmRepository>();
 builder.Services.AddScoped<IFestivalPerformanceRepository, FestivalPerformanceRepository>();
 builder.Services.AddScoped<ITicketRepository, TicketRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-
+builder.Services.AddScoped<IFavouritePerformerRepository, FavouritePerformerRepository>();
+builder.Services.AddScoped<IFavouriteShowRepository, FavouriteShowRepository>();
 
 var app = builder.Build();
 

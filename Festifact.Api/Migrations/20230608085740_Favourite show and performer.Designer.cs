@@ -4,6 +4,7 @@ using Festifact.Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Festifact.Api.Migrations
 {
     [DbContext(typeof(FestifactDbContext))]
-    partial class FestifactDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230608085740_Favourite show and performer")]
+    partial class Favouriteshowandperformer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,44 +24,6 @@ namespace Festifact.Api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Festifact.Api.Entities.FavouritePerformer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("PerformerId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("FavouritePerformers");
-                });
-
-            modelBuilder.Entity("Festifact.Api.Entities.FavouriteShow", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ShowId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("FavouriteShows");
-                });
 
             modelBuilder.Entity("Festifact.Api.Entities.Festival", b =>
                 {
@@ -370,21 +335,21 @@ namespace Festifact.Api.Migrations
                         {
                             Id = 1,
                             Description = "Show by Coolio",
-                            EndDateTime = new DateTime(2023, 6, 8, 13, 45, 57, 424, DateTimeKind.Local).AddTicks(942),
+                            EndDateTime = new DateTime(2023, 6, 8, 12, 57, 40, 38, DateTimeKind.Local).AddTicks(4973),
                             LocationId = 1,
                             Name = "Coolio",
                             PerformerId = 1,
-                            StartDateTime = new DateTime(2023, 6, 8, 11, 45, 57, 424, DateTimeKind.Local).AddTicks(905)
+                            StartDateTime = new DateTime(2023, 6, 8, 10, 57, 40, 38, DateTimeKind.Local).AddTicks(4932)
                         },
                         new
                         {
                             Id = 2,
                             Description = "Film",
-                            EndDateTime = new DateTime(2023, 6, 8, 13, 45, 57, 424, DateTimeKind.Local).AddTicks(961),
+                            EndDateTime = new DateTime(2023, 6, 8, 12, 57, 40, 38, DateTimeKind.Local).AddTicks(4993),
                             FilmId = 1,
                             LocationId = 1,
                             Name = "Film",
-                            StartDateTime = new DateTime(2023, 6, 8, 11, 45, 57, 424, DateTimeKind.Local).AddTicks(959)
+                            StartDateTime = new DateTime(2023, 6, 8, 10, 57, 40, 38, DateTimeKind.Local).AddTicks(4991)
                         });
                 });
 
@@ -449,7 +414,7 @@ namespace Festifact.Api.Migrations
                         {
                             Id = 1,
                             Address = "Hogeschoollaan 1",
-                            DateOfBirth = new DateTime(2003, 6, 8, 11, 45, 57, 424, DateTimeKind.Local).AddTicks(991),
+                            DateOfBirth = new DateTime(2003, 6, 8, 10, 57, 40, 38, DateTimeKind.Local).AddTicks(5026),
                             Email = "piet@test.nl",
                             Name = "Piet"
                         });

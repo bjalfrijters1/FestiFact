@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Festifact.Mobile.Views.LoginPage"
+             xmlns:vm="clr-namespace:Festifact.Mobile.ViewModels"
+             x:DataType="vm:UserViewModel"
+             Title="LoginPage">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Margin"
+                    Value="0,10,0,10" />
+            <Setter Property="FontAttributes"
+                    Value="Bold" />
+            <Setter Property="FontSize"
+                    Value="20" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin"
+                    Value="0,5,0,5" />
+        </Style>
+    </ContentPage.Resources>
+    <VerticalStackLayout>
+        <Label 
+            Text="Enter user ID" />
+        <Entry Text="{Binding Email}" />
+        <Button Text="Login"
+                Command="{Binding GetCommand}" />
+    </VerticalStackLayout>
+</ContentPage>

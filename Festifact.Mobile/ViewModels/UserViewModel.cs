@@ -13,17 +13,21 @@ namespace Festifact.Mobile.ViewModels
 {
     public class UserViewModel : BaseViewModel
     {
+        private string _email;
+        public string Email { get => _email; set { _email = value; OnPropertyChanged(); } }
         //public ICommand NewCommand();
         public ICommand SaveCommand { get; set; }
+        public ICommand GetCommand { get; set; }
 
         private readonly IUserService _userService;
 
         public UserViewModel(IUserService _userService)
         {
             this._userService = _userService;
-            _user = new Festifact.Mobile.Models.User();
+            _user = new User();
 
             SaveCommand = new Command(async () => await SaveUser());
+            GetCommand = new Command(async () => await FetchUser());
             OnPropertyChanged();
 
         }
@@ -47,7 +51,12 @@ namespace Festifact.Mobile.ViewModels
             await _userService.SaveUserAsync(User, true);
             //await _userService.GetUserAsync(User.Id);
             await Shell.Current.GoToAsync("..");
+        }
 
+        private async Task FetchUser()
+        {
+            User = await _userService.GetUserByEmailAsync(Email);
+            await Shell.Current.GoToAsync("..");
         }
 
     }

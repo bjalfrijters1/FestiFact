@@ -18,6 +18,13 @@ namespace Festifact.Api.Repositories
             return user;
         }
 
+        public async Task<User> GetUserByEmail(string email)
+        {
+            var user = (from u in _festifactDbContext.Users
+                        where u.Email == email select u).FirstOrDefault();
+            return user;
+        }
+
         public async Task<User> Insert(UserToAddDto user)
         {
             var result = await _festifactDbContext.AddAsync(new User

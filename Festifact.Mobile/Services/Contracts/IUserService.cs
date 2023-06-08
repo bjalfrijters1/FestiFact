@@ -12,5 +12,6 @@ namespace Festifact.Mobile.Services.Contracts
         Task<User> GetUserAsync(int id);
         Task SaveUserAsync(User user, bool isNewUser);
         Task EditUserAsync(User user);
+        Task<User> GetUserByEmailAsync(string email);
     }
 }

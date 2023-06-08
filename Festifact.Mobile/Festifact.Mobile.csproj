@@ -74,6 +74,9 @@
 	  <MauiXaml Update="Views\FestivalPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\ShowListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -91,7 +91,7 @@ namespace Festifact.Api.Extensions
             }
         }
 
-        public static IEnumerable<ShowDto> ConvertToDto(this IEnumerable<Show> shows, IEnumerable<Location> locations, IEnumerable<Performer> performers, IEnumerable<Film> films)
+        public static IEnumerable<ShowDto> ConvertToDto(this IEnumerable<Show> shows, IEnumerable<Location> locations, IEnumerable<Performer> performers, IEnumerable<Film>? films)
         {
             List<ShowDto> a = new List<ShowDto>();
                               a.AddRange(from show in shows
@@ -116,27 +116,30 @@ namespace Festifact.Api.Extensions
                               });
 
             List<ShowDto> b = new List<ShowDto>();
-            b.AddRange(from show in shows
-                       join location in locations
-                       on show.LocationId equals location.Id
-                       join film in films
-                       on show.FilmId equals film.Id
-                       select new ShowDto
-                       {
-                           Id = show.Id,
-                           LocationId = location.Id,
-                           PerformerId = null,
-                           FilmId = film.Id,
-                           Name = show.Name,
-                           Description = show.Description,
-                           ImageFilePath = show.ImageFilePath,
-                           StartDateTime = show.StartDateTime,
-                           EndDateTime = show.EndDateTime,
-                           LocationName = location.Name,
-                           PerformerName = null,
-                           FilmName = film.Name
-                       });
-            a.AddRange(b);
+            if (shows != null)
+            {
+                b.AddRange(from show in shows
+                           join location in locations
+                           on show.LocationId equals location.Id
+                           join film in films
+                           on show.FilmId equals film.Id
+                           select new ShowDto
+                           {
+                               Id = show.Id,
+                               LocationId = location.Id,
+                               PerformerId = null,
+                               FilmId = film.Id,
+                               Name = show.Name,
+                               Description = show.Description,
+                               ImageFilePath = show.ImageFilePath,
+                               StartDateTime = show.StartDateTime,
+                               EndDateTime = show.EndDateTime,
+                               LocationName = location.Name,
+                               PerformerName = null,
+                               FilmName = film.Name
+                           });
+                a.AddRange(b);
+            }
             return a;
         }
 
@@ -257,6 +260,26 @@ namespace Festifact.Api.Extensions
                 Email = user.Email,
                 DateOfBirth = user.DateOfBirth,
                 Address = user.Address
+            };
+        }
+
+        public static FavouriteShowDto ConvertToDto(this FavouriteShow favouriteShow)
+        {
+            return new FavouriteShowDto
+            {
+                Id = favouriteShow.Id,
+                UserId = favouriteShow.UserId,
+                ShowId = favouriteShow.ShowId
+            };
+        }
+
+        public static FavouritePerformerDto ConvertToDto(this FavouritePerformer favouritePerformer)
+        {
+            return new FavouritePerformerDto
+            {
+                Id = favouritePerformer.Id,
+                UserId = favouritePerformer.UserId,
+                PerformerId = favouritePerformer.PerformerId
             };
         }
     }

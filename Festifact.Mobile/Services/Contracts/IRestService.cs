@@ -18,6 +18,7 @@ namespace Festifact.Mobile.Services.Contracts
         //users
         Task<User> RefreshUserAsync(int id);
         Task SaveUserAsync(User user, bool isNewUser);
+        Task<User> GetUserByEmailAsync(string email);
 
         //shows
         Task<List<Show>> RefreshShowsAsync();

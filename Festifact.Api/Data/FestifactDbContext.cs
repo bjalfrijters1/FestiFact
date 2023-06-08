@@ -128,5 +128,7 @@ namespace Festifact.Api.Data
         public DbSet<Show> Shows { get; set; }
         public DbSet<FestivalPerformance> FestivalPerformances { get;set; }
         public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<FavouriteShow> FavouriteShows { get; set; }
+        public DbSet<FavouritePerformer> FavouritePerformers { get; set; }
     }
 }

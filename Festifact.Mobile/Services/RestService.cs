@@ -170,5 +170,28 @@ namespace Festifact.Mobile.Services
 
             return Shows;
         }
+
+        public async Task<User> GetUserByEmailAsync(string email)
+        {
+            User user = null;
+
+            Uri uri = new Uri(string.Format(Constants.RestUrl, "User", email));
+
+            try
+            {
+                HttpResponseMessage response = await _httpClient.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    user = JsonSerializer.Deserialize<User>(content, _serializerOptions);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
+
+            return user;
+        }
     }
 }
