@@ -6,12 +6,34 @@
              xmlns:models="clr-namespace:Festifact.Mobile.Models"
              x:DataType="vm:FestivalListViewModel"
              Title="Festivals overview">
+    <VerticalStackLayout>
+    <HorizontalStackLayout Margin="20">
+        <Label Text="Filter"/>
+        <Entry Text="{Binding FilterText}" />
+            <Picker x:Name="picker"
+                Title="Field"
+                    SelectedItem="{Binding FilterType}">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Type</x:String>
+                        <x:String>Genre</x:String>
+                        <x:String>Age</x:String>
+                        <x:String>Location</x:String>
+                        <x:String>Date</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+        <Button Text="Filter"
+            Command="{Binding FilterCommand}" />
+        </HorizontalStackLayout>
+
     <CollectionView x:Name="collectionView"
                     Margin="20"
                     ItemsSource="{Binding Festivals}"
                     SelectionMode="Single"
                     SelectionChangedCommand="{Binding SelectFestival}"
                     SelectionChangedCommandParameter="{Binding Path=SelectedItem, Source={RelativeSource Self}}">
+        
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="models:Festival">
                 <Grid Padding="20,0,0,0"
@@ -27,4 +49,5 @@
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
+    </VerticalStackLayout>
 </ContentPage>

@@ -3,6 +3,6 @@
     public class ImageUri
     {
         public int Id { get; set; }
-        public string Uri { get; set; } = null!;
+        public byte[]? bytes { get; set; }
     }
 }

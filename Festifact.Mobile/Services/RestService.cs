@@ -353,5 +353,29 @@ namespace Festifact.Mobile.Services
                 Debug.WriteLine(@"\tERROR {0}", ex.Message);
             }
         }
+
+        public async Task<List<Festival>> FilteredFestivalsAsync(string variable, string value)
+        {
+            Festivals = new List<Festival>();
+
+            string formatHelp = string.Format("Festival/filter/{0}/{1}", variable, value);
+            Uri uri = new Uri(string.Format(Constants.RestUrl, formatHelp, string.Empty));
+
+            try
+            {
+                HttpResponseMessage response = await _httpClient.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    Festivals = JsonSerializer.Deserialize<List<Festival>>(content, _serializerOptions);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
+
+            return Festivals;
+        }
     }
 }

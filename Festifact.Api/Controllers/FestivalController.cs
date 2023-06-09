@@ -118,5 +118,37 @@ namespace Festifact.Api.Controllers
             }
 
         }
+
+        [HttpGet("filter/{variable}/{value}")]
+        public async Task<ActionResult<IEnumerable<FestivalDto>>> GetFilteredFestivals(string variable, string value)
+        {
+            try
+            {
+                var festivals = await this.festivalRepository.GetFestivals();
+                var organisers = await this.organiserRepository.GetOrganisers();
+
+                if (festivals == null || organisers == null)
+                {
+                    return NotFound();
+                }
+                else {
+                    if (variable == "Genre")
+                        festivals = festivals.Where(festival => (int)festival.Genre == int.Parse(value));
+                    if (variable == "Type")
+                        festivals = festivals.Where(festival => (int)festival.Type == int.Parse(value));
+
+                    var festivalDtos = festivals.ConvertToDto(organisers);
+                    festivalDtos.ToList().ForEach(async festivalDto =>
+                        festivalDto.TicketsRemaining = await CalculateTicketsRemaining(festivalDto.Id));
+                    return Ok(festivalDtos);
+                }
+
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error retrieving from database");
+            }
+        }
     }
 }

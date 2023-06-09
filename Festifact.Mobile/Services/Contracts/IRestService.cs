@@ -11,6 +11,7 @@ namespace Festifact.Mobile.Services.Contracts
     {
         //festivals
         Task<List<Festival>> RefreshDataAsync();
+        Task<List<Festival>> FilteredFestivalsAsync(string variable, string value);
 
         //tickets
         Task SaveTicketAsync(int id);
