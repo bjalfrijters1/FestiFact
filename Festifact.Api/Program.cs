@@ -2,6 +2,7 @@ using Festifact.Api.Data;
 using Festifact.Api.Repositories;
 using Festifact.Api.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Net.Http.Headers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +39,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(policy =>
+    policy.WithOrigins("http://localhost:5094", "https://localhost:7224", "https://localhost:5094")
+    .AllowAnyMethod()
+    .WithHeaders(HeaderNames.ContentType));
 
 app.UseHttpsRedirection();
 
