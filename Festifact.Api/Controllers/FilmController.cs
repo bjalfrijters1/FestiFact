@@ -51,5 +51,24 @@ namespace Festifact.Api.Controllers
                    "Error retrieving from database");
             }
         }
+
+        [HttpPost]
+        public async Task<ActionResult<FilmDto>> Insert(FilmToAddDto filmToAddDto)
+        {
+            try
+            {
+                var newFilm = await this.filmRepository.Insert(filmToAddDto);
+                if (newFilm == null)
+                    return NoContent();
+
+                var newFilmDto = newFilm.ConvertToDto();
+                return CreatedAtAction(nameof(GetFilm), new { id = newFilmDto.Id }, newFilmDto);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                   "Error retrieving from database");
+            }
+        }
     }
 }
