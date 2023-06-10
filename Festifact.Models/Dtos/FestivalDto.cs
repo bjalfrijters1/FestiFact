@@ -18,5 +18,6 @@ namespace Festifact.Models.Dtos
         public DateTime? endDate { get; set; }
         public string OrganiserName { get; set; }
         public int TicketsRemaining { get; set; }
+        public int MaxTickets { get; set; }
     }
 }

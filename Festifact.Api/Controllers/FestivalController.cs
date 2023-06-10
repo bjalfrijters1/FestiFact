@@ -2,7 +2,6 @@
 using Festifact.Api.Extensions;
 using Festifact.Api.Repositories.Contracts;
 using Festifact.Models.Dtos;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Festifact.Api.Controllers
@@ -22,12 +21,34 @@ namespace Festifact.Api.Controllers
             this.ticketRepository = ticketRepository;
         }
 
+        [HttpPost]
+        public async Task<ActionResult<FestivalDto>> PostFestival([FromBody] FestivalToAddDto festivalToAddDto)
+        {
+            try
+            {
+                var newFestival = await this.festivalRepository.Insert(festivalToAddDto);
+
+                if (newFestival == null)
+                    return NoContent();
+
+                var newFestivalDto = newFestival.ConvertToDto();
+
+                return CreatedAtAction(nameof(GetFestival), new { id = newFestivalDto.Id }, newFestivalDto);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error retrieving from database");
+            }
+        }
+
         [HttpGet("{id:int}")]
         public async Task<ActionResult<FestivalDto>> GetFestival(int id)
         {
             try
             {
                 var festival = await this.festivalRepository.GetFestival(id);
+                var allTickets = await this.ticketRepository.GetTickets();
 
                 if (festival != null)
                 {
@@ -35,7 +56,7 @@ namespace Festifact.Api.Controllers
                     if (organiser != null)
                     {
                         var festivalDto = festival.ConvertToDto(organiser);
-                        festivalDto.TicketsRemaining = await CalculateTicketsRemaining(id);
+                        festivalDto.TicketsRemaining = CalculateTicketsRemaining(id, festivalDto, allTickets);
                         return Ok(festivalDto);
                     } else
                     {
@@ -62,6 +83,7 @@ namespace Festifact.Api.Controllers
                 //use dtoconversions if you have to use joined tables
                 var festivals = await this.festivalRepository.GetFestivals();
                 var organisers = await this.organiserRepository.GetOrganisers();
+                var allTickets = await this.ticketRepository.GetTickets();
 
                 if(festivals == null || organisers == null) 
                 {
@@ -70,8 +92,8 @@ namespace Festifact.Api.Controllers
                 else
                 {
                     var festivalDtos = festivals.ConvertToDto(organisers);
-                    festivalDtos.ToList().ForEach(async festivalDto =>
-                        festivalDto.TicketsRemaining = await CalculateTicketsRemaining(festivalDto.Id));
+                    festivalDtos.ToList().ForEach(festivalDto =>
+                        festivalDto.TicketsRemaining = CalculateTicketsRemaining(festivalDto.Id, festivalDto, allTickets));
                     return Ok(festivalDtos);
                 }
 
@@ -98,17 +120,14 @@ namespace Festifact.Api.Controllers
             }
         }  
         
-        private async Task<int> CalculateTicketsRemaining(int id)
+        private int CalculateTicketsRemaining(int id, FestivalDto festivalDto, IEnumerable<Ticket> allTickets)
         {
-            var allTickets = await this.ticketRepository.GetTickets();
             IEnumerable<Ticket> soldTickets =
                     from ticket in allTickets
                     where ticket.FestivalId == id
                     select ticket;
 
-            var festival = await this.festivalRepository.GetFestival(id);
-            var amountRemaining = festival.MaxTickets - soldTickets.Count();
-
+            var amountRemaining = festivalDto.MaxTickets - soldTickets.Count();
             if(amountRemaining > 0)
             {
                 return amountRemaining;
@@ -126,6 +145,7 @@ namespace Festifact.Api.Controllers
             {
                 var festivals = await this.festivalRepository.GetFestivals();
                 var organisers = await this.organiserRepository.GetOrganisers();
+                var allTickets = await this.ticketRepository.GetTickets();
 
                 if (festivals == null || organisers == null)
                 {
@@ -138,8 +158,8 @@ namespace Festifact.Api.Controllers
                         festivals = festivals.Where(festival => (int)festival.Type == int.Parse(value));
 
                     var festivalDtos = festivals.ConvertToDto(organisers);
-                    festivalDtos.ToList().ForEach(async festivalDto =>
-                        festivalDto.TicketsRemaining = await CalculateTicketsRemaining(festivalDto.Id));
+                    festivalDtos.ToList().ForEach(festivalDto =>
+                        festivalDto.TicketsRemaining = CalculateTicketsRemaining(festivalDto.Id, festivalDto, allTickets));
                     return Ok(festivalDtos);
                 }
 

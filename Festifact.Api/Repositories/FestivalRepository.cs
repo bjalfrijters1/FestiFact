@@ -2,7 +2,9 @@
 using Festifact.Api.Entities;
 using Festifact.Api.Repositories.Contracts;
 using Festifact.Models.Dtos;
+using Type = Festifact.Api.Extensions.Enums.Type;
 using Microsoft.EntityFrameworkCore;
+using Festifact.Api.Extensions.Enums;
 
 namespace Festifact.Api.Repositories
 {
@@ -27,12 +29,32 @@ namespace Festifact.Api.Repositories
             return festivals;
         }
 
-       /* public async Task<Festival> Update(FestivalDto festival)
+        public async Task<Festival> Insert(FestivalToAddDto festivalToAddDto)
         {
-            //var result = await this.festifactDbContext.Update(festival);
-
+            var result = await festifactDbContext.AddAsync(new Festival
+            {
+                OrganiserId = festivalToAddDto.OrganiserId,
+                Name = festivalToAddDto.Name,
+                Description = festivalToAddDto.Description,
+                Banner = festivalToAddDto.Banner,
+                Type = (Type)festivalToAddDto.Type,
+                Genre = (Genre)festivalToAddDto.Genre,
+                AgeCategory = festivalToAddDto.AgeCategory,
+                StartDate = festivalToAddDto.StartDate,
+                EndDate = festivalToAddDto.EndDate,
+                MaxTickets = festivalToAddDto.MaxTickets,
+                TicketsRemaining = festivalToAddDto.TicketsRemaining
+            });
             await festifactDbContext.SaveChangesAsync();
             return result.Entity;
-        }*/
+        }
+
+        /* public async Task<Festival> Update(FestivalDto festival)
+         {
+             //var result = await this.festifactDbContext.Update(festival);
+
+             await festifactDbContext.SaveChangesAsync();
+             return result.Entity;
+         }*/
     }
 }

@@ -19,6 +19,9 @@ namespace Festifact.Api.Extensions
                         Description = festival.Description,
                         Genre = (int)festival.Genre,
                         Type = (int)festival.Type,
+                        startDate = festival.StartDate,
+                        endDate = festival.EndDate,
+                        MaxTickets = festival.MaxTickets,
                         OrganiserName = organiser.Name
                     }).ToList();
 

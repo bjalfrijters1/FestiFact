@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Festifact.Web", "Festifact.Web\Festifact.Web.csproj", "{F2ADF880-5427-40BA-ABEC-6A60E32CCCC4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3F38C6AF-6EB1-4277-B57F-A489DC1416DD} = {3F38C6AF-6EB1-4277-B57F-A489DC1416DD}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Festifact.Api", "Festifact.Api\Festifact.Api.csproj", "{034F6E69-2724-4BB7-A128-77DC927AC33F}"
 EndProject

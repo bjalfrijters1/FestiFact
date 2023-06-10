@@ -12,7 +12,7 @@ namespace Festifact.Api.Entities
         public string? Name { get; set; }
         public string? Description { get; set; }
         public List<ImageUri> Images { get; set; } = new List<ImageUri>();
-        public string? Banner { get; set; }
+        public byte[]? Banner { get; set; }
         public Type Type { get; set; }
         public Genre Genre { get; set; }
         public string? AgeCategory { get; set; }

@@ -1,0 +1,94 @@
+﻿@page "/festivals"
+@using Festifact.Models.Dtos;
+@inherits FestivalsBase
+
+<PageTitle>Festivals</PageTitle>
+
+<h1>Festival</h1>
+
+<p>This is a table that shows festival objects</p>
+
+@if (Festivals == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Genre</th>
+                <th>Type</th>
+                <th>StartDate</th>
+                <th>EndDate</th>
+                <th>OrganiserName</th>
+                <th>TicketsRemaining</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var festival in Festivals)
+            {
+                <tr>
+                    <td>@festival.Name</td>
+                    <td>@festival.Description</td>
+                    <td>@festival.Genre</td>
+                    <td>@festival.Type</td>
+                    <td>@festival.startDate</td>
+                    <td>@festival.endDate</td>
+                    <td>@festival.OrganiserName</td>
+                    <td>@festival.TicketsRemaining</td>
+                    <td><button>Details</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h3>Add a new festival...</h3>
+    <body>
+        <form method="post">
+            <fieldset>
+                <legend> Add Festival</legend>
+                <div>
+                    <label for="fName">Festival name:</label>
+                    <input type="text" name="fName" @bind-value="festivalToAddDto.Name" @bind-value:event="onchange" />
+                </div>
+                <div>
+                    <label for="Description">Description:</label>
+                    <input type="text" name="Description" @bind-value="festivalToAddDto.Description" @bind-value:event="onchange" />
+                </div>
+                <div>
+                    <label for="Type">Type:</label>
+                    <input type="text" name="Type" @bind-value="festivalToAddDto.Type" @bind-value:event="onchange" />
+                </div>
+                <div>
+                    <label for="Genre">Genre:</label>
+                    <input type="text" name="Genre" @bind-value="festivalToAddDto.Genre" @bind-value:event="onchange" />
+                </div>
+                <div>
+                    <label for="AgeCategory">AgeCategory</label>
+                    <input type="text" name="AgeCategory" @bind-value="festivalToAddDto.AgeCategory" @bind-value:event="onchange" />
+                </div>
+                <div>
+                    <label for="StartDate">StartDate:</label>
+                    <input type="date" name="StartDate" @bind-value="festivalToAddDto.StartDate" @bind-value:event="onchange" />
+                </div>
+                <div>
+                    <label for="EndDate">EndDate:</label>
+                    <input type="date" name="EndDate" @bind-value="festivalToAddDto.EndDate" @bind-value:event="onchange" />
+                </div>
+                <div>
+                    <label for="MaxTickets">MaxTickets:</label>
+                    <input type="number" name="MaxTickets" @bind-value="festivalToAddDto.MaxTickets" @bind-value:event="onchange" />
+                </div>
+                <div>
+                    <label>&nbsp;</label>
+                    <button type="button" @onclick="(async() => await AddFestival())">Submit</button>
+                </div>
+            </fieldset>
+        </form>
+    </body>
+}
+
