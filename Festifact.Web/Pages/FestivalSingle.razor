@@ -1,7 +1,49 @@
-﻿
-
-
-<h3>FestivalSingle</h3>
+﻿@page "/FestivalDetails/{Id:int}"
+@inject NavigationManager navManager
+@inherits FestivalSingleBase
+<h1>Edit festival</h1>
+<body>
+    <form method="post">
+        <fieldset>
+            <div>
+                <label for="fName">Festival name:</label>
+                <input type="text" name="fName" @bind-value="Festival.Name" @bind-value:event="onchange" />
+            </div>
+            <div>
+                <label for="Description">Description:</label>
+                <input type="text" name="Description" @bind-value="Festival.Description" @bind-value:event="onchange" />
+            </div>
+            <div>
+                <label for="Type">Type:</label>
+                <input type="text" name="Type" @bind-value="Festival.Type" @bind-value:event="onchange" />
+            </div>
+            <div>
+                <label for="Genre">Genre:</label>
+                <input type="text" name="Genre" @bind-value="Festival.Genre" @bind-value:event="onchange" />
+            </div>
+            <div>
+                <label for="AgeCategory">AgeCategory</label>
+                <input type="text" name="AgeCategory" @bind-value="Festival.AgeCategory" @bind-value:event="onchange" />
+            </div>
+            <div>
+                <label for="StartDate">StartDate:</label>
+                <input type="date" name="StartDate" @bind-value="Festival.StartDate" @bind-value:event="onchange" />
+            </div>
+            <div>
+                <label for="EndDate">EndDate:</label>
+                <input type="date" name="EndDate" @bind-value="Festival.EndDate" @bind-value:event="onchange" />
+            </div>
+            <div>
+                <label for="MaxTickets">MaxTickets:</label>
+                <input type="number" name="MaxTickets" @bind-value="Festival.MaxTickets" @bind-value:event="onchange" />
+            </div>
+            <div>
+                <label>&nbsp;</label>
+                <button type="button" @onclick="(async() => await EditFestival())">Submit</button>
+            </div>
+        </fieldset>
+    </form>
+</body>
 
 @code {
 

@@ -31,7 +31,7 @@ namespace Festifact.Api.Repositories
 
         public async Task<Festival> Insert(FestivalToAddDto festivalToAddDto)
         {
-            var result = await festifactDbContext.AddAsync(new Festival
+            var result = await this.festifactDbContext.AddAsync(new Festival
             {
                 OrganiserId = festivalToAddDto.OrganiserId,
                 Name = festivalToAddDto.Name,
@@ -45,16 +45,33 @@ namespace Festifact.Api.Repositories
                 MaxTickets = festivalToAddDto.MaxTickets,
                 TicketsRemaining = festivalToAddDto.TicketsRemaining
             });
-            await festifactDbContext.SaveChangesAsync();
+            await this.festifactDbContext.SaveChangesAsync();
             return result.Entity;
         }
 
-        /* public async Task<Festival> Update(FestivalDto festival)
-         {
-             //var result = await this.festifactDbContext.Update(festival);
+        public async Task<Festival> Update(FestivalDto festivalDto)
+        {
+            await this.festifactDbContext.Festivals.
+                Where(f => f.Id == festivalDto.Id).ExecuteDeleteAsync();
 
-             await festifactDbContext.SaveChangesAsync();
-             return result.Entity;
-         }*/
+            var result = await festifactDbContext.AddAsync(new Festival
+            {
+                OrganiserId = festivalDto.OrganiserId,
+                Name = festivalDto.Name,
+                Description = festivalDto.Description,
+                Banner = festivalDto.Banner,
+                Type = (Type)festivalDto.Type,
+                Genre = (Genre)festivalDto.Genre,
+                AgeCategory = festivalDto.AgeCategory,
+                StartDate = festivalDto.StartDate,
+                EndDate = festivalDto.EndDate,
+                MaxTickets = festivalDto.MaxTickets,
+                TicketsRemaining = festivalDto.TicketsRemaining
+            });
+
+            await this.festifactDbContext.SaveChangesAsync();
+            return result.Entity;
+        }
+
     }
 }

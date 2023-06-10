@@ -14,6 +14,7 @@
 }
 else
 {
+    @inject NavigationManager navManager;
     <table class="table">
         <thead>
             <tr>
@@ -36,11 +37,11 @@ else
                     <td>@festival.Description</td>
                     <td>@festival.Genre</td>
                     <td>@festival.Type</td>
-                    <td>@festival.startDate</td>
-                    <td>@festival.endDate</td>
+                    <td>@festival.StartDate</td>
+                    <td>@festival.EndDate</td>
                     <td>@festival.OrganiserName</td>
                     <td>@festival.TicketsRemaining</td>
-                    <td><button>Details</button></td>
+                    <td><button @onclick="@(() => navManager.NavigateTo("/FestivalDetails/"+@festival.Id))">Details</button></td>
                 </tr>
             }
         </tbody>

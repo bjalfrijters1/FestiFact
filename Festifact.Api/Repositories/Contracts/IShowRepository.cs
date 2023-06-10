@@ -1,4 +1,5 @@
 ﻿using Festifact.Api.Entities;
+using Festifact.Models.Dtos;
 
 namespace Festifact.Api.Repositories.Contracts
 {
@@ -6,5 +7,6 @@ namespace Festifact.Api.Repositories.Contracts
     {
         Task<IEnumerable<Show>> GetShows();
         Task<Show> GetShow(int id);
+        Task<Show> Insert(ShowToAddDto showToAddDto);
     }
 }

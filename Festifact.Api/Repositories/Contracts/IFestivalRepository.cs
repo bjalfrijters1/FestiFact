@@ -8,5 +8,6 @@ namespace Festifact.Api.Repositories.Contracts
         Task<IEnumerable<Festival>> GetFestivals();
         Task<Festival> GetFestival(int id);
         Task<Festival> Insert(FestivalToAddDto festivalToAddDto);
+        Task<Festival> Update(FestivalDto festivalDto);
     }
 }

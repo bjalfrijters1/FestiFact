@@ -106,11 +106,15 @@ namespace Festifact.Api.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<FestivalDto>> Edit([FromBody] FestivalDto festivalDto, int id)
+        public async Task<ActionResult<FestivalDto>> Edit([FromBody] FestivalDto festivalDto)
         {
             try
             {
-                return NotFound();
+                var result = await festivalRepository.Update(festivalDto);
+                if (result == null)
+                    return NoContent();
+                else
+                    return Ok(result);
 
             }
             catch (Exception)

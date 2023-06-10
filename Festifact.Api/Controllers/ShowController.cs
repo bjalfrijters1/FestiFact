@@ -82,5 +82,45 @@ namespace Festifact.Api.Controllers
                     "Error retrieving from database");
             }
         }
+
+        [HttpPost]
+        public async Task<ActionResult<ShowDto>> PostShow([FromBody] ShowToAddDto showToAddDto)
+        {
+            try
+            {
+                var newShow = await this.showRepository.Insert(showToAddDto);
+
+                if (newShow != null)
+                {
+                    var location = await this.locationRepository.GetLocation(newShow.LocationId);
+
+                    if (location != null && newShow.FilmId != null)
+                    {
+                        var film = await this.filmRepository.GetFilm((int)newShow.FilmId);
+                        var showDto = newShow.ConvertToDto(film, null, location);
+                        return CreatedAtAction(nameof(GetShow), new { id = showDto.Id }, showDto);
+                    }
+                    else if (location != null && newShow.PerformerId != null)
+                    {
+                        var performer = await this.performerRepository.GetPerformer((int)newShow.PerformerId);
+                        var showDto = newShow.ConvertToDto(null, performer, location);
+                        return CreatedAtAction(nameof(GetShow), new { id = showDto.Id }, showDto);
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error retrieving from database");
+            }
+        }
     }
 }

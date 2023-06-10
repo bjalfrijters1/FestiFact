@@ -19,8 +19,8 @@ namespace Festifact.Api.Extensions
                         Description = festival.Description,
                         Genre = (int)festival.Genre,
                         Type = (int)festival.Type,
-                        startDate = festival.StartDate,
-                        endDate = festival.EndDate,
+                        StartDate = festival.StartDate,
+                        EndDate = festival.EndDate,
                         MaxTickets = festival.MaxTickets,
                         OrganiserName = organiser.Name
                     }).ToList();
@@ -36,8 +36,8 @@ namespace Festifact.Api.Extensions
                 Description = festival.Description,
                 Genre = (int)festival.Genre,
                 Type = (int)festival.Type,
-                startDate = festival.StartDate,
-                endDate = festival.EndDate
+                StartDate = festival.StartDate,
+                EndDate = festival.EndDate
             };
         }
 
@@ -284,6 +284,27 @@ namespace Festifact.Api.Extensions
                 UserId = favouritePerformer.UserId,
                 PerformerId = favouritePerformer.PerformerId
             };
+        }
+
+        public static LocationDto ConvertToDto(this Location location)
+        {
+            return new LocationDto
+            {
+                Id = location.Id,
+                Name = location.Name,
+                Capacity = location.Capacity
+            };
+        }
+
+        public static IEnumerable<LocationDto> ConvertToDto(this IEnumerable<Location> locations)
+        {
+            return (from location in locations
+                    select new LocationDto
+                    {
+                        Id = location.Id,
+                        Name = location.Name,
+                        Capacity = location.Capacity
+                    });
         }
     }
 }

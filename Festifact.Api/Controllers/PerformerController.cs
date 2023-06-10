@@ -51,5 +51,25 @@ namespace Festifact.Api.Controllers
                    "Error retrieving from database");
             }
         }
+
+        [HttpPost]
+        public async Task<ActionResult<PerformerDto>> PostPerformer([FromBody] PerformerToAddDto performerToAddDto)
+        {
+            try
+            {
+                var newPerformer = await this.performerRepository.Insert(performerToAddDto);
+
+                if (newPerformer == null)
+                    return NoContent();
+
+                var newPerformerDto = newPerformer.ConvertToDto();
+                return CreatedAtAction(nameof(GetPerformer), new { id = newPerformerDto.Id }, newPerformerDto);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error retrieving from database");
+            }
+        }
     }
 }

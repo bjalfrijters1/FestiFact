@@ -38,7 +38,7 @@ namespace Festifact.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FavouritePerformers");
+                    b.ToTable("FavouritePerformers", (string)null);
                 });
 
             modelBuilder.Entity("Festifact.Api.Entities.FavouriteShow", b =>
@@ -57,7 +57,7 @@ namespace Festifact.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FavouriteShows");
+                    b.ToTable("FavouriteShows", (string)null);
                 });
 
             modelBuilder.Entity("Festifact.Api.Entities.Festival", b =>
@@ -103,7 +103,7 @@ namespace Festifact.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Festivals");
+                    b.ToTable("Festivals", (string)null);
 
                     b.HasData(
                         new
@@ -135,7 +135,7 @@ namespace Festifact.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FestivalPerformances");
+                    b.ToTable("FestivalPerformances", (string)null);
 
                     b.HasData(
                         new
@@ -185,7 +185,7 @@ namespace Festifact.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Films");
+                    b.ToTable("Films", (string)null);
 
                     b.HasData(
                         new
@@ -219,7 +219,7 @@ namespace Festifact.Api.Migrations
 
                     b.HasIndex("FestivalId");
 
-                    b.ToTable("ImageUri");
+                    b.ToTable("ImageUri", (string)null);
                 });
 
             modelBuilder.Entity("Festifact.Api.Entities.Location", b =>
@@ -247,7 +247,7 @@ namespace Festifact.Api.Migrations
 
                     b.HasIndex("FestivalId");
 
-                    b.ToTable("Locations");
+                    b.ToTable("Locations", (string)null);
 
                     b.HasData(
                         new
@@ -272,7 +272,7 @@ namespace Festifact.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Organisers");
+                    b.ToTable("Organisers", (string)null);
 
                     b.HasData(
                         new
@@ -313,7 +313,7 @@ namespace Festifact.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Performers");
+                    b.ToTable("Performers", (string)null);
 
                     b.HasData(
                         new
@@ -363,7 +363,7 @@ namespace Festifact.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Shows");
+                    b.ToTable("Shows", (string)null);
 
                     b.HasData(
                         new
@@ -407,7 +407,7 @@ namespace Festifact.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tickets");
+                    b.ToTable("Tickets", (string)null);
 
                     b.HasData(
                         new
@@ -442,7 +442,7 @@ namespace Festifact.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
 
                     b.HasData(
                         new
