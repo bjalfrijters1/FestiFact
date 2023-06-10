@@ -1,5 +1,90 @@
-﻿<h3>Shows</h3>
+﻿@page "/shows"
+@using Festifact.Models.Dtos;
+@inherits ShowsBase
 
-@code {
+<PageTitle>Shows</PageTitle>
 
+<h1>Shows</h1>
+<p>This table contains show objects</p>
+
+@if (Shows == null)
+{
+    <p><em>Loading...</em></p>
+} else
+{
+    @inject NavigationManager navManager;
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>StartDate</th>
+                <th>EndDate</th>
+                <th>Film/Performer</th>
+                <th>TicketsRemaining</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var show in Shows)
+            {
+                <tr>
+                    <td>@show.Name</td>
+                    <td>@show.Description</td>
+                    <td>@show.LocationName</td>
+                    <td>@show.StartDateTime</td>
+                    <td>@show.EndDateTime</td>
+                    @if (show.FilmName != null)
+                    {
+                        <td>@show.FilmName</td>
+                    } else {
+                        <td>@show.PerformerName</td>
+                    }
+                    <td><button @onclick="@(() => navManager.NavigateTo("/FestivalDetails/"+@show.Id))">Details</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h3>Add a new show...</h3>
+    <body>
+        <form method="post">
+            <fieldset>
+                <legend>Add Show</legend>
+                <div>
+                    <label for="fName">Show name:</label>
+                    <input type="text" name="fName" @bind-value="ShowToAddDto.Name" @bind-value:event="onchange" />
+                </div>
+                <div>
+                    <label for="Description">Description:</label>
+                    <input type="text" name="Description"  @bind-value="ShowToAddDto.Description" @bind-value:event="onchange" />
+                </div>
+                <div>
+                    <label for="Location">Location:</label>
+                    <input type="number" name="Location" placeholder="enter id number" @bind-value="ShowToAddDto.LocationId" @bind-value:event="onchange" />
+                </div>
+                <div>
+                    <label for="Performer">Performer:</label>
+                    <input type="number" name="Performer" placeholder="enter id number" @bind-value="ShowToAddDto.PerformerId" @bind-value:event="onchange" />
+                </div>
+                <div>
+                    <label for="Film">Film:</label>
+                    <input type="number" name="Film" placeholder="enter id number" @bind-value="ShowToAddDto.FilmId" @bind-value:event="onchange" />
+                </div>
+                <div>
+                    <label for="StartDate">StartDate:</label>
+                    <input type="date" name="StartDate" @bind-value="ShowToAddDto.StartDateTime" @bind-value:event="onchange" />
+                </div>
+                <div>
+                    <label for="EndDate">EndDate:</label>
+                    <input type="date" name="EndDate" @bind-value="ShowToAddDto.EndDateTime" @bind-value:event="onchange" />
+                </div>
+                <div>
+                    <label>&nbsp;</label>
+                    <button type="button" @onclick="(async() => await AddShow())">Submit</button>
+                </div>
+            </fieldset>
+        </form>
+    </body>
 }
