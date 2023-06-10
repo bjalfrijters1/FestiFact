@@ -102,9 +102,35 @@ namespace Festifact.Web.Services
             }
         }
 
-        public Task<FestivalDto> PutFestival(FestivalDto festival)
+        public async Task<FestivalDto> PutFestival(FestivalDto festival)
         {
-            throw new NotImplementedException();
+            Uri uri = new Uri(string.Format(Constants.RestUrl, "Festival", string.Empty));
+
+            try
+            {
+                var response = await _client.PutAsJsonAsync<FestivalDto>(uri, festival);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        return default(FestivalDto);
+                    }
+
+                    return await response.Content.ReadFromJsonAsync<FestivalDto>();
+
+                }
+                else
+                {
+                    var message = await response.Content.ReadAsStringAsync();
+                    throw new Exception($"Http status:{response.StatusCode} Message -{message}");
+                }
+            }
+            catch (Exception)
+            {
+                //Log exception
+                throw;
+            }
         }
     }
 }

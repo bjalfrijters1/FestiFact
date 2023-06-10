@@ -7,19 +7,19 @@ namespace Festifact.Web.Pages
     public class FestivalSingleBase : ComponentBase
     {
         [Parameter]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [Inject]
         public IFestivalService FestivalService { get; set; }
 
-        public FestivalDto Festival { get; set; }
+        public FestivalDto Festival { get; set; } = new();
         public string ErrorMessage { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
             try
             {
-                Festival = await FestivalService.GetFestival(Id);
+                Festival = await FestivalService.GetFestival((int)Id);
             }
             catch (Exception ex)
             {

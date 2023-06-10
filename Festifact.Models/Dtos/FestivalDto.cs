@@ -15,7 +15,7 @@ namespace Festifact.Models.Dtos
         public int Genre { get; set; }
         public int Type { get; set; }
         public byte[]? Banner { get; set; }
-        public string AgeCategory { get; set; }
+        public string? AgeCategory { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public string OrganiserName { get; set; }
