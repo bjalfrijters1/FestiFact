@@ -14,12 +14,20 @@ namespace Festifact.Api.Controllers
         private readonly IOrganiserRepository organiserRepository;
         private readonly ITicketRepository ticketRepository;
 
-        public FestivalController(IFestivalRepository festivalRepository, IOrganiserRepository organiserRepository, ITicketRepository ticketRepository)
+        //used for statistics
+        private readonly IShowRepository showRepository;
+        private readonly IPerformerRepository performerRepository;
+
+        public FestivalController(IFestivalRepository festivalRepository, IOrganiserRepository organiserRepository, ITicketRepository ticketRepository,
+            IShowRepository showRepository, IPerformerRepository performerRepository)
         {
             this.festivalRepository = festivalRepository;
             this.organiserRepository = organiserRepository;
             this.ticketRepository = ticketRepository;
+            this.showRepository = showRepository;
+            this.performerRepository = performerRepository;
         }
+
 
         [HttpPost]
         public async Task<ActionResult<FestivalDto>> PostFestival([FromBody] FestivalToAddDto festivalToAddDto)

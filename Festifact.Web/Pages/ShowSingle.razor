@@ -1,5 +1,43 @@
-﻿<h3>ShowSingle</h3>
+﻿@page "/ShowDetails/{Id:int}"
+@inject NavigationManager navManager
+@inherits ShowSingleBase
 
-@code {
-
-}
+<h1>View @Show.Name</h1>
+<body>
+    <form method="post">
+        <fieldset>
+            <div>
+                <label for="fName">Show name:</label>
+                <input type="text" name="fName" @bind-value="Show.Name" @bind-value:event="onchange" />
+            </div>
+            <div>
+                <label for="Description">Description:</label>
+                <input type="text" name="Description" @bind-value="Show.Description" @bind-value:event="onchange" />
+            </div>
+            <div>
+                <label for="Location">Location:</label>
+                <input type="number" name="Location" placeholder="enter id number" @bind-value="Show.LocationId" @bind-value:event="onchange" />
+            </div>
+            <div>
+                <label for="Performer">Performer:</label>
+                <input type="number" name="Performer" placeholder="enter id number" @bind-value="Show.PerformerId" @bind-value:event="onchange" />
+            </div>
+            <div>
+                <label for="Film">Film:</label>
+                <input type="number" name="Film" placeholder="enter id number" @bind-value="Show.FilmId" @bind-value:event="onchange" />
+            </div>
+            <div>
+                <label for="StartDate">StartDate:</label>
+                <input type="date" name="StartDate" @bind-value="Show.StartDateTime" @bind-value:event="onchange" />
+            </div>
+            <div>
+                <label for="EndDate">EndDate:</label>
+                <input type="date" name="EndDate" @bind-value="Show.EndDateTime" @bind-value:event="onchange" />
+            </div>
+            @*<div>
+                <label>&nbsp;</label>
+                <button type="button" @onclick="(async() => await EditShow())">Submit</button>
+            </div>*@
+        </fieldset>
+    </form>
+</body>

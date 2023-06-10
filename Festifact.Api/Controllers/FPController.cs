@@ -1,4 +1,5 @@
-﻿using Festifact.Api.Extensions;
+﻿using Festifact.Api.Entities;
+using Festifact.Api.Extensions;
 using Festifact.Api.Repositories.Contracts;
 using Festifact.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
@@ -12,12 +13,45 @@ namespace Festifact.Api.Controllers
         private readonly IFestivalPerformanceRepository fpRepo;
         private readonly IFestivalRepository festivalRepo;
         private readonly IShowRepository showRepo;
+        private readonly ITicketRepository ticketRepo;
 
-        public FPController(IFestivalPerformanceRepository fpRepo, IFestivalRepository festivalRepo, IShowRepository showRepo)
+        public FPController(IFestivalPerformanceRepository fpRepo, IFestivalRepository festivalRepo, IShowRepository showRepo, ITicketRepository ticketRepo)
         {
             this.fpRepo = fpRepo;
             this.festivalRepo = festivalRepo;
             this.showRepo = showRepo;
+            this.ticketRepo = ticketRepo;
+        }
+
+        [HttpGet("statistics")]
+        public async Task<ActionResult<StatisticsDto>> GetStatistics(int id)
+        {
+            try
+            {
+                var festival = await this.festivalRepo.GetFestival(id);
+                var festivalDto = festival.ConvertToDto();
+                var allTickets = await this.ticketRepo.GetTickets();
+                var ticketsAvailable = CalculateTicketsRemaining(festival.Id, festivalDto, allTickets);
+                StatisticsDto statDto = new StatisticsDto
+                {
+                    FestivalId = festival.Id,
+                    TicketsAvailable = ticketsAvailable,
+                    TicketsSold = (festival.MaxTickets - ticketsAvailable)
+                };
+
+                if (statDto == null)
+                    return NoContent();
+
+                return Ok(statDto);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error retrieving from database");
+            }
+
+
         }
 
         [HttpGet]
@@ -102,6 +136,25 @@ namespace Festifact.Api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Error retrieving data from the database");
             }
+        }
+
+        private int CalculateTicketsRemaining(int id, FestivalDto festivalDto, IEnumerable<Ticket> allTickets)
+        {
+            IEnumerable<Ticket> soldTickets =
+                    from ticket in allTickets
+                    where ticket.FestivalId == id
+                    select ticket;
+
+            var amountRemaining = festivalDto.MaxTickets - soldTickets.Count();
+            if (amountRemaining > 0)
+            {
+                return amountRemaining;
+            }
+            else
+            {
+                return -1;
+            }
+
         }
 
     }
