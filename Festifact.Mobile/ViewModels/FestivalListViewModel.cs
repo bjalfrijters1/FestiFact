@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Festifact.Mobile.Models;
 using Festifact.Mobile.Services;
 using Festifact.Mobile.Services.Contracts;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,13 +32,17 @@ namespace Festifact.Mobile.ViewModels
         public FestivalListViewModel(IFestivalService service)
         {
             _festivalService = service;
-           
-            Title = "List of festival items";
-            SelectFestival = new Command<Festival>(async (item) => await SelectionChanged(item));
-            FilterCommand = new Command(async () =>await Filter());
+
+            LoadMauiControls();
             _ = RefreshFestivalItems();
         }
 
+        private void LoadMauiControls()
+        {
+            Title = "List of festival items";
+            SelectFestival = new Command<Festival>(async (item) => await SelectionChanged(item));
+            FilterCommand = new Command(async () => await Filter());
+        }
         public async Task RefreshFestivalItems()
         {
             Festivals.Clear();

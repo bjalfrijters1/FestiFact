@@ -22,6 +22,7 @@ namespace Festifact.Web.Pages
         {
             try
             {
+
                 var showDto = await _showService.PostShow(ShowToAddDto);
             }
             catch (Exception)

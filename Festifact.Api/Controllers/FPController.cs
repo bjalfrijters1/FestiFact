@@ -23,7 +23,7 @@ namespace Festifact.Api.Controllers
             this.ticketRepo = ticketRepo;
         }
 
-        [HttpGet("statistics")]
+        [HttpGet("stats/{id:int}")]
         public async Task<ActionResult<StatisticsDto>> GetStatistics(int id)
         {
             try
@@ -54,8 +54,8 @@ namespace Festifact.Api.Controllers
 
         }
 
-        [HttpGet]
-        public async Task<ActionResult<FestivalPerformanceDto>> GetFPByFestival(int fId)
+        [HttpGet("all/{fId:int}")]
+        public async Task<ActionResult<IEnumerable<FestivalPerformanceDto>>> GetFPByFestival(int fId)
         {
             try
             {

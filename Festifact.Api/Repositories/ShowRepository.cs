@@ -37,8 +37,8 @@ namespace Festifact.Api.Repositories
                 Name = showToAddDto.Name,
                 Description = showToAddDto.Description,
                 ImageFilePath = showToAddDto.ImageFilePath,
-                StartDateTime = showToAddDto.StartDateTime,
-                EndDateTime = showToAddDto.EndDateTime,
+                StartDateTime = (DateTime)showToAddDto.StartDateTime,
+                EndDateTime = (DateTime)showToAddDto.EndDateTime,
             });
             await this.festifactDbContext.SaveChangesAsync();
             return result.Entity;

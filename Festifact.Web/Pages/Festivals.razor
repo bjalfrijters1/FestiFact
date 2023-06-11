@@ -74,11 +74,11 @@ else
                 </div>
                 <div>
                     <label for="StartDate">StartDate:</label>
-                    <input type="date" name="StartDate" @bind-value="festivalToAddDto.StartDate" @bind-value:event="onchange" />
+                    <input type="datetime-local" name="StartDate" @bind-value="festivalToAddDto.StartDate" @bind-value:event="onchange" />
                 </div>
                 <div>
                     <label for="EndDate">EndDate:</label>
-                    <input type="date" name="EndDate" @bind-value="festivalToAddDto.EndDate" @bind-value:event="onchange" />
+                    <input type="datetime-local" name="EndDate" @bind-value="festivalToAddDto.EndDate" @bind-value:event="onchange" />
                 </div>
                 <div>
                     <label for="MaxTickets">MaxTickets:</label>

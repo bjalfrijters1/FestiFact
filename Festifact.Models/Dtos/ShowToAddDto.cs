@@ -14,7 +14,7 @@ namespace Festifact.Models.Dtos
         public string? Name { get; set; }
         public string? Description { get; set; }
         public string? ImageFilePath { get; set; }
-        public DateTime StartDateTime { get; set; }
-        public DateTime EndDateTime { get; set; }
+        public DateTime? StartDateTime { get; set; }
+        public DateTime? EndDateTime { get; set; }
     }
 }

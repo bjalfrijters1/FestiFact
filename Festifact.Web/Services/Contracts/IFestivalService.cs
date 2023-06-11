@@ -8,6 +8,9 @@ namespace Festifact.Web.Services.Contracts
         Task<FestivalDto> GetFestival(int id);
         Task<FestivalDto> PostFestival(FestivalToAddDto festivalToAddDto);
         Task<FestivalDto> PutFestival(FestivalDto festival);
+        Task<StatisticsDto> GetStatistics(int id);
+
+        Task<IEnumerable<FestivalPerformanceDto>> GetFestivalPerformances(int id);
 
     }
 }

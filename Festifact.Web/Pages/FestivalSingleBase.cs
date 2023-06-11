@@ -1,6 +1,7 @@
 ﻿using Festifact.Models.Dtos;
 using Festifact.Web.Services.Contracts;
 using Microsoft.AspNetCore.Components;
+using System.Runtime.CompilerServices;
 
 namespace Festifact.Web.Pages
 {
@@ -12,7 +13,15 @@ namespace Festifact.Web.Pages
         [Inject]
         public IFestivalService FestivalService { get; set; }
 
+        [Inject]
+        public IShowService ShowService { get; set; }
+        
+
         public FestivalDto Festival { get; set; } = new();
+        public IEnumerable<FestivalPerformanceDto> FestivalPerformances { get; set; }
+        public int amountOfShows { get; set; }
+        public int amountOfPerformers { get; set; }
+        public StatisticsDto Statistics { get; set; } = new();
         public string ErrorMessage { get; set; }
 
         protected override async Task OnInitializedAsync()
@@ -20,6 +29,7 @@ namespace Festifact.Web.Pages
             try
             {
                 Festival = await FestivalService.GetFestival((int)Id);
+                await GetStatistics();
             }
             catch (Exception ex)
             {
@@ -39,6 +49,25 @@ namespace Festifact.Web.Pages
 
                 ErrorMessage = ex.Message;
             }
+        }
+
+        protected async Task GetStatistics()
+        {
+            Statistics = await FestivalService.GetStatistics((int)Id);
+            FestivalPerformances = await FestivalService.GetFestivalPerformances((int)Id);
+            List<int> showIds = FestivalPerformances.Select(x => x.ShowId).Distinct().ToList();
+            amountOfShows = FestivalPerformances.Select(x => x.ShowId).Distinct().Count();
+            
+            List<int> performerIds = new List<int>();
+            foreach(int id in showIds)
+            {
+               if(!performerIds.Contains(id))
+                {
+                    performerIds.Add(id);
+                }
+            }
+            amountOfPerformers = performerIds.Count();
+
         }
     }
 }

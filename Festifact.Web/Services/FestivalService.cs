@@ -41,6 +41,35 @@ namespace Festifact.Web.Services
             }
         }
 
+        public async Task<IEnumerable<FestivalPerformanceDto>> GetFestivalPerformances(int id)
+        {
+            Uri uri = new Uri(string.Format(Constants.RestUrl, "FP/all", id));
+            try
+            {
+                var response = await _client.GetAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        return Enumerable.Empty<FestivalPerformanceDto>();
+                    }
+
+                    return await response.Content.ReadFromJsonAsync<IEnumerable<FestivalPerformanceDto>>();
+                }
+                else
+                {
+                    var message = await response.Content.ReadAsStringAsync();
+                    throw new Exception($"Http status code: {response.StatusCode} message: {message}");
+                }
+            }
+            catch (Exception)
+            {
+                //Log exception
+                throw;
+            }
+        }
+
         public async Task<IEnumerable<FestivalDto>> GetFestivals()
         {
             Uri uri = new Uri(string.Format(Constants.RestUrl, "Festival", string.Empty));
@@ -59,6 +88,35 @@ namespace Festifact.Web.Services
                     return await response.Content.ReadFromJsonAsync<IEnumerable<FestivalDto>>();
                 }
                 else
+                {
+                    var message = await response.Content.ReadAsStringAsync();
+                    throw new Exception($"Http status code: {response.StatusCode} message: {message}");
+                }
+            }
+            catch (Exception)
+            {
+                //Log exception
+                throw;
+            }
+        }
+
+        public async Task<StatisticsDto> GetStatistics(int id)
+        {
+            Uri uri = new Uri(string.Format(Constants.RestUrl, "FP/stats", id));
+
+            try
+            {
+                var response = await _client.GetAsync(uri);
+
+                if(response.IsSuccessStatusCode)
+                {
+                    if(response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        return default(StatisticsDto);
+                    }
+
+                    return await response.Content.ReadFromJsonAsync<StatisticsDto>();
+                } else
                 {
                     var message = await response.Content.ReadAsStringAsync();
                     throw new Exception($"Http status code: {response.StatusCode} message: {message}");
