@@ -48,6 +48,7 @@ namespace Festifact.Mobile.ViewModels
             Festivals.Clear();
             var festivals = await _festivalService.GetFestivalsAsync();
             festivals.ForEach(festival => Festivals.Add(festival));
+            OnPropertyChanged();
         }
 
         private async Task SelectionChanged(Festival festival)

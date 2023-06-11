@@ -32,5 +32,25 @@ namespace Festifact.Testing
 
             Assert.True(festivalListVM.Festivals?.Count > 0);
         }
+
+        /*
+         * To successfully run this test, comment the function "LoadMauiControls()" in the constructor of FestivalListViewModel(), 
+         * since this tests ViewModel and we don't actually use the MAUI app here, we need to disable the controls in order to test the unit
+         * 
+         */
+        [Fact]
+        public async Task ShouldPopulateShows()
+        {
+            var shows = new List<Show>();
+            var show = new Show();
+            shows.Add(show);
+
+            var showService = Substitute.For<IShowService>();
+            showService.GetShowsAsync().Returns(shows);
+
+            var showListVM = new ShowListViewModel(showService);
+
+            Assert.True(showListVM.Shows?.Count > 0);
+        }
     }
 }

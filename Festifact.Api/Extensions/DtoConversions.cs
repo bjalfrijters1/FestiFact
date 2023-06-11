@@ -22,6 +22,7 @@ namespace Festifact.Api.Extensions
                         StartDate = festival.StartDate,
                         EndDate = festival.EndDate,
                         MaxTickets = festival.MaxTickets,
+                        TicketsRemaining = festival.TicketsRemaining,
                         OrganiserName = organiser.Name
                     }).ToList();
 
@@ -38,7 +39,8 @@ namespace Festifact.Api.Extensions
                 Type = festival.Type,
                 StartDate = festival.StartDate,
                 EndDate = festival.EndDate,
-                MaxTickets = festival.MaxTickets
+                MaxTickets = festival.MaxTickets,
+                TicketsRemaining = festival.TicketsRemaining
             };
         }
 
@@ -53,7 +55,8 @@ namespace Festifact.Api.Extensions
                 Genre = festival.Genre,
                 Type = festival.Type,
                 OrganiserName = organiser.Name,
-                MaxTickets = festival.MaxTickets
+                MaxTickets = festival.MaxTickets,
+                TicketsRemaining = festival.TicketsRemaining
             };
         }
 

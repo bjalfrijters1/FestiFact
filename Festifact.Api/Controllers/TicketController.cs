@@ -23,7 +23,7 @@ namespace Festifact.Api.Controllers
 
         }
 
-        [HttpGet]
+        [HttpGet("alltickets/{fId:int}")]
         public async Task<ActionResult<TicketDto>> GetTicketsByFestival(int fId)
         {
             try
@@ -76,7 +76,6 @@ namespace Festifact.Api.Controllers
         {
             try
             {
-                
                 var festival = await this.festivalRepository.GetFestival(ticketToAdd.FestivalId);
                 if(festival.TicketsRemaining > 0)
                 {

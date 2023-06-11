@@ -34,6 +34,7 @@ namespace Festifact.Api.Controllers
         {
             try
             {
+                festivalToAddDto.TicketsRemaining = festivalToAddDto.MaxTickets;
                 var newFestival = await this.festivalRepository.Insert(festivalToAddDto);
 
                 if (newFestival == null)
@@ -57,6 +58,7 @@ namespace Festifact.Api.Controllers
             {
                 var festival = await this.festivalRepository.GetFestival(id);
                 var allTickets = await this.ticketRepository.GetTickets();
+                festival.TicketsRemaining = CalculateTicketsRemaining(id, festival, allTickets);
 
                 if (festival != null)
                 {
@@ -64,7 +66,6 @@ namespace Festifact.Api.Controllers
                     if (organiser != null)
                     {
                         var festivalDto = festival.ConvertToDto(organiser);
-                        festivalDto.TicketsRemaining = CalculateTicketsRemaining(id, festivalDto, allTickets);
                         return Ok(festivalDto);
                     } else
                     {
@@ -92,6 +93,10 @@ namespace Festifact.Api.Controllers
                 var festivals = await this.festivalRepository.GetFestivals();
                 var organisers = await this.organiserRepository.GetOrganisers();
                 var allTickets = await this.ticketRepository.GetTickets();
+                festivals.ToList().ForEach(f =>
+                {
+                    f.TicketsRemaining = CalculateTicketsRemaining(f.Id, f, allTickets);
+                });
 
                 if(festivals == null || organisers == null) 
                 {
@@ -100,8 +105,6 @@ namespace Festifact.Api.Controllers
                 else
                 {
                     var festivalDtos = festivals.ConvertToDto(organisers);
-                    festivalDtos.ToList().ForEach(festivalDto =>
-                        festivalDto.TicketsRemaining = CalculateTicketsRemaining(festivalDto.Id, festivalDto, allTickets));
                     return Ok(festivalDtos);
                 }
 
@@ -132,14 +135,14 @@ namespace Festifact.Api.Controllers
             }
         }  
         
-        private int CalculateTicketsRemaining(int id, FestivalDto festivalDto, IEnumerable<Ticket> allTickets)
+        private int CalculateTicketsRemaining(int id, Festival festival, IEnumerable<Ticket> allTickets)
         {
             IEnumerable<Ticket> soldTickets =
                     from ticket in allTickets
                     where ticket.FestivalId == id
                     select ticket;
 
-            var amountRemaining = festivalDto.MaxTickets - soldTickets.Count();
+            var amountRemaining = festival.MaxTickets - soldTickets.Count();
             if(amountRemaining >= 0)
             {
                 return amountRemaining;
@@ -158,6 +161,10 @@ namespace Festifact.Api.Controllers
                 var festivals = await this.festivalRepository.GetFestivals();
                 var organisers = await this.organiserRepository.GetOrganisers();
                 var allTickets = await this.ticketRepository.GetTickets();
+                festivals.ToList().ForEach(f =>
+                {
+                    f.TicketsRemaining = CalculateTicketsRemaining(f.Id, f, allTickets);
+                });
 
                 if (festivals == null || organisers == null)
                 {
@@ -170,8 +177,6 @@ namespace Festifact.Api.Controllers
                         festivals = festivals.Where(festival => (int)festival.Type == int.Parse(value));
 
                     var festivalDtos = festivals.ConvertToDto(organisers);
-                    festivalDtos.ToList().ForEach(festivalDto =>
-                        festivalDto.TicketsRemaining = CalculateTicketsRemaining(festivalDto.Id, festivalDto, allTickets));
                     return Ok(festivalDtos);
                 }
 

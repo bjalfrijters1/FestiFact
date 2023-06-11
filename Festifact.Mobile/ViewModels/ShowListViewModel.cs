@@ -23,11 +23,15 @@ namespace Festifact.Mobile.ViewModels
         {
             _showService = service;
 
-            Title = "List of show items";
-            SelectShow = new Command<Show>(async (item) => await SelectionChanged(item));
+            LoadMauiControls();
             _ = RefreshShowItems();
         }
 
+        private void LoadMauiControls()
+        {
+            Title = "List of show items";
+            SelectShow = new Command<Show>(async (item) => await SelectionChanged(item));
+        }
         public async Task RefreshShowItems()
         {
             Shows.Clear();
