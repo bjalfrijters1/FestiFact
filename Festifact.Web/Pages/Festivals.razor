@@ -62,11 +62,22 @@ else
                 </div>
                 <div>
                     <label for="Type">Type:</label>
-                    <input type="text" name="Type" @bind-value="festivalToAddDto.Type" @bind-value:event="onchange" />
+                    <select name="Type" @bind-value="festivalToAddDto.Type" @bind-value:event="onchange">
+                        <option value="Music">Music</option>
+                        <option value="Theater">Theater</option>
+                        <option value="Film">Film</option>
+                        <option value="Game">Game</option>
+                    </select>
                 </div>
                 <div>
                     <label for="Genre">Genre:</label>
-                    <input type="text" name="Genre" @bind-value="festivalToAddDto.Genre" @bind-value:event="onchange" />
+                    <select name="Genre" @bind-value="festivalToAddDto.Genre" @bind-value:event="onchange" >
+                        <option value="Dance">Dance</option>
+                        <option value="Techno">Techno</option>
+                        <option value="Classical">Classical</option>
+                        <option value="Cabaret">Cabaret</option>
+                        <option value="ScienceFiction">ScienceFiction</option>
+                    </select>
                 </div>
                 <div>
                     <label for="AgeCategory">AgeCategory</label>

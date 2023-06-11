@@ -1,6 +1,8 @@
 ﻿using Festifact.Models.Dtos;
+using Festifact.Web.Extensions.Enums;
 using Festifact.Web.Services.Contracts;
 using Microsoft.AspNetCore.Components;
+using Type = Festifact.Web.Extensions.Enums.Type;
 
 namespace Festifact.Web.Pages
 {
@@ -10,6 +12,8 @@ namespace Festifact.Web.Pages
         public IFestivalService _festivalService { get; set; }
         public IEnumerable<FestivalDto> Festivals { get; set; }
         public string ErrorMessage { get; set; }
+        public Type Type { get; set; }
+        public Genre Genre { get; set; }
 
         protected FestivalToAddDto festivalToAddDto = new();
 

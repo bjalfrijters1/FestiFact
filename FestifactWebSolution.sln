@@ -13,8 +13,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Festifact.Models", "Festifact.Models\Festifact.Models.csproj", "{3F38C6AF-6EB1-4277-B57F-A489DC1416DD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Festifact.Mobile", "Festifact.Mobile\Festifact.Mobile.csproj", "{C92C9EAE-BACF-4EAF-B570-F8B0C3627850}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3F38C6AF-6EB1-4277-B57F-A489DC1416DD} = {3F38C6AF-6EB1-4277-B57F-A489DC1416DD}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Festifact.Testing", "Festifact.Testing\Festifact.Testing.csproj", "{A27BD178-7D15-4276-AE5B-800FDD2B3AB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Festifact.Testing", "Festifact.Testing\Festifact.Testing.csproj", "{A27BD178-7D15-4276-AE5B-800FDD2B3AB3}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C92C9EAE-BACF-4EAF-B570-F8B0C3627850} = {C92C9EAE-BACF-4EAF-B570-F8B0C3627850}
 	EndProjectSection

@@ -140,7 +140,7 @@ namespace Festifact.Api.Controllers
                     select ticket;
 
             var amountRemaining = festivalDto.MaxTickets - soldTickets.Count();
-            if(amountRemaining > 0)
+            if(amountRemaining >= 0)
             {
                 return amountRemaining;
             } else

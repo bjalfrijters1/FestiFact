@@ -76,16 +76,22 @@ namespace Festifact.Api.Controllers
         {
             try
             {
-                var newTicket = await this.ticketRepository.Insert(ticketToAdd);
-                //add fId to parameters when checking for capactiy.
-                //var festival = await this.festivalRepository.GetFestival(fId);
+                
+                var festival = await this.festivalRepository.GetFestival(ticketToAdd.FestivalId);
+                if(festival.TicketsRemaining > 0)
+                {
+                    var newTicket = await this.ticketRepository.Insert(ticketToAdd);
+                    var newTicketDto = newTicket.ConvertToDto();
+                    if (newTicket == null)
+                        return NoContent();
 
-                if (newTicket == null)
-                    return NoContent();
+                    return CreatedAtAction(nameof(GetTicketById), new { id = newTicketDto.Id }, newTicketDto);
+                } else
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest,
+                        "There are no tickets remaining!!!");
+                }
 
-                var newTicketDto = newTicket.ConvertToDto();
-
-                return CreatedAtAction(nameof(GetTicketById), new { id = newTicketDto.Id }, newTicketDto);
             }
             catch (Exception ex)
             {

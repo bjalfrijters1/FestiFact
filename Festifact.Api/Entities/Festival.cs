@@ -1,6 +1,6 @@
-﻿using Festifact.Api.Extensions.Enums;
+﻿using Festifact.Models.Enums;
 using System.ComponentModel.DataAnnotations.Schema;
-using Type = Festifact.Api.Extensions.Enums.Type;
+using Type = Festifact.Models.Enums.Type;
 
 namespace Festifact.Api.Entities
 {
@@ -11,8 +11,7 @@ namespace Festifact.Api.Entities
         public int OrganiserId { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
-        public List<ImageUri> Images { get; set; } = new List<ImageUri>();
-        public byte[]? Banner { get; set; }
+        public string? Banner { get; set; }
         public Type Type { get; set; }
         public Genre Genre { get; set; }
         public string? AgeCategory { get; set; }

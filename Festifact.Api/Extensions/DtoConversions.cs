@@ -17,8 +17,8 @@ namespace Festifact.Api.Extensions
                         OrganiserId = festival.OrganiserId,
                         Name = festival.Name,
                         Description = festival.Description,
-                        Genre = (int)festival.Genre,
-                        Type = (int)festival.Type,
+                        Genre = festival.Genre,
+                        Type = festival.Type,
                         StartDate = festival.StartDate,
                         EndDate = festival.EndDate,
                         MaxTickets = festival.MaxTickets,
@@ -34,8 +34,8 @@ namespace Festifact.Api.Extensions
                 Id = festival.Id,
                 Name = festival.Name,
                 Description = festival.Description,
-                Genre = (int)festival.Genre,
-                Type = (int)festival.Type,
+                Genre = festival.Genre,
+                Type = festival.Type,
                 StartDate = festival.StartDate,
                 EndDate = festival.EndDate,
                 MaxTickets = festival.MaxTickets
@@ -50,8 +50,8 @@ namespace Festifact.Api.Extensions
                 OrganiserId = festival.OrganiserId,
                 Name = festival.Name,
                 Description = festival.Description,
-                Genre = (int)festival.Genre,
-                Type = (int)festival.Type,
+                Genre = festival.Genre,
+                Type = festival.Type,
                 OrganiserName = organiser.Name,
                 MaxTickets = festival.MaxTickets
             };
