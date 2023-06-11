@@ -67,9 +67,10 @@ namespace Festifact.Mobile.Services
             return Festivals;
         }
 
-        public async Task SaveTicketAsync(int id)
+        public async Task<Ticket> SaveTicketAsync(int id)
         {
             Uri uri = new Uri(string.Format(Constants.RestUrl, "Ticket", string.Empty));
+            Ticket ticket = null;
 
             try
             {
@@ -84,12 +85,18 @@ namespace Festifact.Mobile.Services
                 response = await _httpClient.PostAsync(uri, content);
 
                 if (response.IsSuccessStatusCode)
-                    Debug.WriteLine(@"\tTicket successfully saved.");
+                {
+                    string responseContent = await response.Content.ReadAsStringAsync();
+                    ticket = JsonSerializer.Deserialize<Ticket>(responseContent, _serializerOptions);
+                }
+                    
             } 
             catch (Exception ex)
             {
                 Debug.WriteLine(@"\tERROR {0}", ex.Message);
             }
+
+            return ticket;
         }
 
         public async Task<User> RefreshUserAsync(int id)
@@ -163,6 +170,7 @@ namespace Festifact.Mobile.Services
                     string content = await response.Content.ReadAsStringAsync();
                     Shows = JsonSerializer.Deserialize<List<Show>>(content, _serializerOptions);
                 }
+
             }
             catch (Exception ex)
             {

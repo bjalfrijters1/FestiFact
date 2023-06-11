@@ -25,6 +25,7 @@ namespace Festifact.Mobile
             builder.Services.AddSingleton<IUserService, UserService>();
             builder.Services.AddSingleton<IShowService, ShowService>();
             builder.Services.AddSingleton<IPerformerService, PerformerService>();
+            builder.Services.AddSingleton<IMailService,MailService>();
 
             builder.Services.AddSingleton<FestivalListPage>();
             builder.Services.AddSingleton<FestivalListViewModel>();

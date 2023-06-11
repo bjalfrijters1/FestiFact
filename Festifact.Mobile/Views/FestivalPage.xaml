@@ -33,6 +33,8 @@
         <Label Text="{Binding Path=Festival.TicketsRemaining}" />
         <Button Text="Order Ticket"
                 Command="{Binding OrderCommand}"/>
+        <Button Text="Mail festival info"
+                Command="{Binding MailCommand}"/>
         
     </VerticalStackLayout>
 </ContentPage>

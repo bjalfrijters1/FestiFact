@@ -27,7 +27,7 @@ namespace Festifact.Mobile.Services
             return _restService.FilteredFestivalsAsync(variable, value);
         }
 
-        public Task SaveTicketAsync(int id)
+        public Task<Ticket> SaveTicketAsync(int id)
         {
             return _restService.SaveTicketAsync(id);
         }

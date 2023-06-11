@@ -18,5 +18,10 @@ namespace Festifact.Mobile.Models
         public Genre Genre { get; set; }
         public string OrganiserName { get; set; }
         public int TicketsRemaining { get; set; }
+
+        public override string ToString()
+        {
+            return "Name:" + Name + ", Description: " + Description;
+        }
     }
 }
