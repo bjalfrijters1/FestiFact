@@ -47,7 +47,6 @@ namespace Festifact.Mobile.Services
         public async Task<List<Festival>> RefreshDataAsync()
         {
             Festivals = new List<Festival>();
-
             Uri uri = new Uri(string.Format(Constants.RestUrl, "Festival", string.Empty));
 
             try
@@ -57,6 +56,14 @@ namespace Festifact.Mobile.Services
                 {
                     string content = await response.Content.ReadAsStringAsync();
                     Festivals = JsonSerializer.Deserialize<List<Festival>>(content, _serializerOptions);
+                }
+                foreach(var festival in Festivals)
+                {
+                    if(festival.Address == null)
+                    {
+                        festival.Address = "Hogeschoollaan 1 Breda";     
+                    }
+                    festival.Distance = -1;
                 }
             }
             catch (Exception ex)

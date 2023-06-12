@@ -20,6 +20,8 @@
         </Style>
     </ContentPage.Resources>
     <VerticalStackLayout Margin="20">
+        <Image Source="{Binding Path=Performer.ImageFilePath}"
+               HeightRequest="32" WidthRequest="32" HorizontalOptions="Start" />
         <Label Text="Performer name"/>
         <Label Text="{Binding Path=Performer.Name}"
                FontSize="16" FontAttributes="None"/>

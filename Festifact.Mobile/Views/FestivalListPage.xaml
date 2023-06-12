@@ -6,48 +6,50 @@
              xmlns:models="clr-namespace:Festifact.Mobile.Models"
              x:DataType="vm:FestivalListViewModel"
              Title="Festivals overview">
-    <VerticalStackLayout>
-    <HorizontalStackLayout Margin="20">
-        <Label Text="Filter"/>
-        <Entry Text="{Binding FilterText}" />
-            <Picker x:Name="picker"
-                Title="Field"
-                    SelectedItem="{Binding FilterType}">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Type</x:String>
-                        <x:String>Genre</x:String>
-                        <x:String>Age</x:String>
-                        <x:String>Location</x:String>
-                        <x:String>Date</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
-        <Button Text="Filter"
-            Command="{Binding FilterCommand}" />
-        </HorizontalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout>
+            <HorizontalStackLayout Margin="20">
+                <Label Text="Filter"/>
+                <Entry Text="{Binding FilterText}" />
+                <Picker x:Name="picker"
+                    Title="Field"
+                        SelectedItem="{Binding FilterType}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Type</x:String>
+                            <x:String>Genre</x:String>
+                            <x:String>Distance</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <Button Text="Filter"
+                Command="{Binding FilterCommand}" />
+            </HorizontalStackLayout>
 
-    <CollectionView x:Name="collectionView"
+            <CollectionView x:Name="collectionView"
                     Margin="20"
                     ItemsSource="{Binding Festivals}"
                     SelectionMode="Single"
                     SelectionChangedCommand="{Binding SelectFestival}"
                     SelectionChangedCommandParameter="{Binding Path=SelectedItem, Source={RelativeSource Self}}">
-        
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="models:Festival">
-                <Grid Padding="20,0,0,0"
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Festival">
+                        <Grid Padding="20,20,20,20"
                       ColumnDefinitions="0.9*"
-                      RowDefinitions="*, *, *">
-                    <Label Text="{Binding Name}" 
+                      RowDefinitions="*, *, *, *">
+                            <Label Text="{Binding Name}" 
                            />
-                    <Label Text="{Binding Description}" 
+                            <Label Text="{Binding Description}" 
                            Grid.Row="1"/>
-                    <Label Text="{Binding OrganiserName}" 
+                            <Label Text="{Binding OrganiserName}" 
                            Grid.Row="2" />
-                </Grid>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
-    </VerticalStackLayout>
+                            <Label Text="{Binding Distance}" 
+                               Grid.Row="3"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

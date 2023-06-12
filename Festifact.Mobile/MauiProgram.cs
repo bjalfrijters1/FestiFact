@@ -17,6 +17,10 @@ namespace Festifact.Mobile
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                })
+                .ConfigureEssentials(essentials =>
+                {
+                    essentials.UseMapServiceToken("JwTVmFcwBGnEoPT2vjOu~EhnGqxFTMaUzNkj1EduPTA~AtmflFPQjxpCYfo6VQr9xEWE1igce4Ejb-RLzKaM_IOzNLamQfWrSh3dWSsWw0g_");
                 });
 
             builder.Services.AddSingleton<IHttpsClientHandlerService, HttpsClientHandlerService>();

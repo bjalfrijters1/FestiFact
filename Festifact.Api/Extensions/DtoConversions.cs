@@ -19,11 +19,15 @@ namespace Festifact.Api.Extensions
                         Description = festival.Description,
                         Genre = festival.Genre,
                         Type = festival.Type,
+                        Banner = festival.Banner,
                         StartDate = festival.StartDate,
                         EndDate = festival.EndDate,
                         MaxTickets = festival.MaxTickets,
                         TicketsRemaining = festival.TicketsRemaining,
-                        OrganiserName = organiser.Name
+                        OrganiserName = organiser.Name,
+                        Latitude = festival.Latitude,
+                        Longitude = festival.Longitude,
+                        Address = festival.Address
                     }).ToList();
 
         }
@@ -35,12 +39,16 @@ namespace Festifact.Api.Extensions
                 Id = festival.Id,
                 Name = festival.Name,
                 Description = festival.Description,
+                Banner = festival.Banner,
                 Genre = festival.Genre,
                 Type = festival.Type,
                 StartDate = festival.StartDate,
                 EndDate = festival.EndDate,
                 MaxTickets = festival.MaxTickets,
-                TicketsRemaining = festival.TicketsRemaining
+                TicketsRemaining = festival.TicketsRemaining,
+                Latitude = festival.Latitude,
+                Longitude = festival.Longitude,
+                Address = festival.Address
             };
         }
 
@@ -52,11 +60,15 @@ namespace Festifact.Api.Extensions
                 OrganiserId = festival.OrganiserId,
                 Name = festival.Name,
                 Description = festival.Description,
+                Banner = festival.Banner,
                 Genre = festival.Genre,
                 Type = festival.Type,
                 OrganiserName = organiser.Name,
                 MaxTickets = festival.MaxTickets,
-                TicketsRemaining = festival.TicketsRemaining
+                TicketsRemaining = festival.TicketsRemaining,
+                Latitude = festival.Latitude,
+                Longitude = festival.Longitude,
+                Address = festival.Address
             };
         }
 

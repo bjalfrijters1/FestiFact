@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace Festifact.Mobile.ViewModels
 {
-    public class BaseViewModel : ObservableObject, INotifyPropertyChanged
+    public class BaseViewModel : INotifyPropertyChanged
     {
-        public new event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         private string _title;
         public string Title { get => _title; set { _title = value; OnPropertyChanged(); } }
@@ -22,11 +22,11 @@ namespace Festifact.Mobile.ViewModels
 
         
 
-        protected new void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
-            var changed = PropertyChanged;
+            /*var changed = PropertyChanged;
             if (changed == null)
-                return;
+                return;*/
 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

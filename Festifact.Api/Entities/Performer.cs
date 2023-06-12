@@ -1,5 +1,5 @@
-﻿using Festifact.Api.Extensions.Enums;
-using Type = Festifact.Api.Extensions.Enums.Type;
+﻿using Festifact.Models.Enums;
+using Type = Festifact.Models.Enums.Type;
 
 namespace Festifact.Api.Entities
 {

@@ -102,7 +102,8 @@ namespace Festifact.Api.Controllers
                     return CreatedAtAction(nameof(GetFP), new { id = newFPDto.Id }, newFPDto);
                 } else
                 {
-                    return NoContent();
+                    return StatusCode(StatusCodes.Status400BadRequest,
+                        "This show's timeslot isn't within the festival's time window.");
                 }
                 
             }

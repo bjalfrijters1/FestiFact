@@ -2,9 +2,9 @@
 using Festifact.Api.Entities;
 using Festifact.Api.Repositories.Contracts;
 using Festifact.Models.Dtos;
-using Type = Festifact.Api.Extensions.Enums.Type;
+using Type = Festifact.Models.Enums.Type;
 using Microsoft.EntityFrameworkCore;
-using Festifact.Api.Extensions.Enums;
+using Festifact.Models.Enums;
 
 namespace Festifact.Api.Repositories
 {

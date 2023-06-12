@@ -23,5 +23,8 @@ namespace Festifact.Models.Dtos
         public string OrganiserName { get; set; }
         public int TicketsRemaining { get; set; }
         public int MaxTickets { get; set; }
+        public double? Longitude { get; set; }
+        public double? Latitude { get; set; }
+        public string? Address { get; set; }
     }
 }

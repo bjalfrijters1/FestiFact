@@ -1,11 +1,6 @@
-﻿using Festifact.Mobile.Extensions.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-using Type = Festifact.Mobile.Extensions.Enums.Type;
+﻿using Festifact.Models.Enums;
+using Org.BouncyCastle.Asn1.Cmp;
+using Type = Festifact.Models.Enums.Type;
 
 namespace Festifact.Mobile.Models
 {
@@ -16,8 +11,16 @@ namespace Festifact.Mobile.Models
         public string Description { get; set; }
         public Type Type { get; set; }
         public Genre Genre { get; set; }
+        public string Banner { get; set; }
         public string OrganiserName { get; set; }
         public int TicketsRemaining { get; set; }
+        public string Address { get; set; } = "Hogeschoollaan 1 Breda";
+        public double? Longitude { get; set; }
+        public double? Latitutde { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
+        public double Distance { get; set; }
+        public Location? FestivalLocation { get; set; }
 
         public override string ToString()
         {

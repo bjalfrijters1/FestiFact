@@ -9,6 +9,7 @@
         <ShellContent
             Title="Festivals"
             ContentTemplate="{DataTemplate views:FestivalListPage}"
+            Icon="{OnPlatform 'icon_notes.png', iOS='icon_notes_ios.png', MacCatalyst='icon_notes_ios.png'}"
             Route="MainPage" />
         <ShellContent
             Title="Shows"

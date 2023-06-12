@@ -4,6 +4,7 @@ using Festifact.Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Festifact.Api.Migrations
 {
     [DbContext(typeof(FestifactDbContext))]
-    partial class FestifactDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230611185012_long and lat")]
+    partial class longandlat
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,9 +71,6 @@ namespace Festifact.Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("AgeCategory")
                         .HasColumnType("nvarchar(max)");
 
@@ -85,12 +85,6 @@ namespace Festifact.Api.Migrations
 
                     b.Property<int>("Genre")
                         .HasColumnType("int");
-
-                    b.Property<double?>("Latitude")
-                        .HasColumnType("float");
-
-                    b.Property<double?>("Longitude")
-                        .HasColumnType("float");
 
                     b.Property<int>("MaxTickets")
                         .HasColumnType("int");
@@ -109,6 +103,12 @@ namespace Festifact.Api.Migrations
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
+
+                    b.Property<double?>("latitude")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("longitude")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -354,21 +354,21 @@ namespace Festifact.Api.Migrations
                         {
                             Id = 1,
                             Description = "Show by Coolio",
-                            EndDateTime = new DateTime(2023, 6, 12, 16, 46, 44, 767, DateTimeKind.Local).AddTicks(5004),
+                            EndDateTime = new DateTime(2023, 6, 11, 22, 50, 11, 986, DateTimeKind.Local).AddTicks(9261),
                             LocationId = 1,
                             Name = "Coolio",
                             PerformerId = 1,
-                            StartDateTime = new DateTime(2023, 6, 12, 14, 46, 44, 767, DateTimeKind.Local).AddTicks(4959)
+                            StartDateTime = new DateTime(2023, 6, 11, 20, 50, 11, 986, DateTimeKind.Local).AddTicks(9218)
                         },
                         new
                         {
                             Id = 2,
                             Description = "Film",
-                            EndDateTime = new DateTime(2023, 6, 12, 16, 46, 44, 767, DateTimeKind.Local).AddTicks(5020),
+                            EndDateTime = new DateTime(2023, 6, 11, 22, 50, 11, 986, DateTimeKind.Local).AddTicks(9280),
                             FilmId = 1,
                             LocationId = 1,
                             Name = "Film",
-                            StartDateTime = new DateTime(2023, 6, 12, 14, 46, 44, 767, DateTimeKind.Local).AddTicks(5018)
+                            StartDateTime = new DateTime(2023, 6, 11, 20, 50, 11, 986, DateTimeKind.Local).AddTicks(9278)
                         });
                 });
 
@@ -433,7 +433,7 @@ namespace Festifact.Api.Migrations
                         {
                             Id = 1,
                             Address = "Hogeschoollaan 1",
-                            DateOfBirth = new DateTime(2003, 6, 12, 14, 46, 44, 767, DateTimeKind.Local).AddTicks(5051),
+                            DateOfBirth = new DateTime(2003, 6, 11, 20, 50, 11, 986, DateTimeKind.Local).AddTicks(9312),
                             Email = "piet@test.nl",
                             Name = "Piet"
                         });

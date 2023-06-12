@@ -16,5 +16,6 @@ namespace Festifact.Models.Dtos
         public string sName { get; set; }
         public string sDescription { get; set; }
 
+
     }
 }

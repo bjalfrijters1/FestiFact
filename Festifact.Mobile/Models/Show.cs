@@ -15,8 +15,8 @@ namespace Festifact.Mobile.Models
         public string? Name { get; set; }
         public string? Description { get; set; }
         public string? ImageFilePath { get; set; }
-        public DateTime StartDateTime { get; set; }
-        public DateTime EndDateTime { get; set; }
+        public DateTime? StartDateTime { get; set; }
+        public DateTime? EndDateTime { get; set; }
         public string? LocationName { get; set; }
         public string? PerformerName { get; set; }
         public string? FilmName { get; set; }

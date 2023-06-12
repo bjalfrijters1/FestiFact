@@ -15,8 +15,8 @@ namespace Festifact.Web.Pages
 
         [Inject]
         public IShowService ShowService { get; set; }
-        
 
+        public string Banner { get; set; } = null;
         public FestivalDto Festival { get; set; } = new();
         public IEnumerable<FestivalPerformanceDto> FestivalPerformances { get; set; }
         public int amountOfShows { get; set; }
@@ -29,6 +29,13 @@ namespace Festifact.Web.Pages
             try
             {
                 Festival = await FestivalService.GetFestival((int)Id);
+                if(Festival.Banner == null)
+                {
+                    Banner = $"images/coolio.png";
+                } else
+                {
+                    Banner = $"images/{Festival.Banner}";
+                }
                 await GetStatistics();
             }
             catch (Exception ex)

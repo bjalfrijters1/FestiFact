@@ -22,5 +22,7 @@ namespace Festifact.Models.Dtos
         public DateTime? EndDate { get; set; }
         public int MaxTickets { get; set; }
         public int TicketsRemaining { get; set; }
+        public double? Longitude { get; set; }
+        public double? Latitude { get; set;}
     }
 }

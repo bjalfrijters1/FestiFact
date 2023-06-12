@@ -1,10 +1,10 @@
-﻿using Festifact.Mobile.Extensions.Enums;
+﻿using Festifact.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Type = Festifact.Mobile.Extensions.Enums.Type;
+using Type = Festifact.Models.Enums.Type;
 
 namespace Festifact.Mobile.Models
 {

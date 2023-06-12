@@ -1,8 +1,8 @@
 ﻿using Festifact.Models.Dtos;
-using Festifact.Web.Extensions.Enums;
+using Festifact.Models.Enums;
 using Festifact.Web.Services.Contracts;
 using Microsoft.AspNetCore.Components;
-using Type = Festifact.Web.Extensions.Enums.Type;
+using Type = Festifact.Models.Enums.Type;
 
 namespace Festifact.Web.Pages
 {
