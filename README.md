@@ -5,7 +5,7 @@
 ################
 
 1. Clone repo
-2. update-database
+2. run update-database in packet management console
 3. Build solution
 4. If you run into build problems, check dependecies, all projects use Festifact.Models.
 5. Testing also uses Mobile
