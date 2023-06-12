@@ -5,10 +5,11 @@
 ################
 
 1. Clone repo
-2. Build solution
-3. If you run into build problems, check dependecies, all projects use Festifact.Models.
-4. Testing also uses Mobile
-5. Run solution with multiple projects (Api AND Web and/or Mobile), can run all three at once.
+2. update-database
+3. Build solution
+4. If you run into build problems, check dependecies, all projects use Festifact.Models.
+5. Testing also uses Mobile
+6. Run solution with multiple projects (Api AND Web and/or Mobile), can run all three at once.
 
 You can use both an Android and a WinUI application to run the Mobile project.
 
