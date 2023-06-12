@@ -168,11 +168,12 @@ namespace Festifact.Api.Extensions
             return (from fp in fps
                     join show in shows
                     on fp.ShowId equals show.Id
+                    where fp.FestivalId == festival.Id
                     select new FestivalPerformanceDto
                     {
                         Id = fp.Id,
                         FestivalId = festival.Id,
-                        ShowId = show.Id,
+                        ShowId = fp.Id,
                         fName = festival.Name,
                         fDescription = festival.Description,
                         sName = show.Name,

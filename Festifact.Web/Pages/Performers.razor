@@ -1,5 +1,82 @@
-﻿<h3>PerformerBase</h3>
+﻿@page "/performers"
+@using Festifact.Models.Dtos
+@inherits PerformersBase
 
-@code {
+<PageTitle>Performers</PageTitle>
 
+<h3>Performers</h3>
+<p>this table contains performer objects</p>
+
+@if (Performers == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    @inject NavigationManager navManager;
+<table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>ImageFilePath</th>
+                <th>CountryOfOrigin</th>
+                <th>Type</th>
+                <th>Genre</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var performer in Performers)
+            {
+                <tr>
+                    <td>@performer.Name</td>
+                    <td>@performer.Description</td>
+                    <td>@performer.ImageFilePath</td>
+                    <td>@performer.CountryOfOrigin</td>
+                    <td>@performer.Type</td>
+                    <td>@performer.Genre</td>
+                   
+                    <td><button @onclick="@(() => navManager.NavigateTo("/PerformerDetails/"+@performer.Id))">Details</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h3>Add a new show...</h3>
+    <body>
+        <form method="post">
+            <fieldset>
+                <legend>Add Show</legend>
+                <div>
+                    <label for="fName">Show name:</label>
+                    <input type="text" name="fName" @bind-value="PerformerToAddDto.Name" @bind-value:event="onchange" />
+                </div>
+                <div>
+                    <label for="Description">Description:</label>
+                    <input type="text" name="Description" @bind-value="PerformerToAddDto.Description" @bind-value:event="onchange" />
+                </div>
+                <div>
+                    <label for="ImageFilePath">ImageFilePath:</label>
+                    <input type="text" name="ImageFilePath" @bind-value="PerformerToAddDto.ImageFilePath" @bind-value:event="onchange" />
+                </div>
+                <div>
+                    <label for="CountryOfOrigin">CountryOfOrigin:</label>
+                    <input type="text" name="CountryOfOrigin" @bind-value="PerformerToAddDto.CountryOfOrigin" @bind-value:event="onchange" />
+                </div>
+                <div>
+                    <label for="Type">Type:</label>
+                    <input type="text" name="Type" @bind-value="PerformerToAddDto.Type" @bind-value:event="onchange" />
+                </div>
+                <div>
+                    <label for="Genre">Genre:</label>
+                    <input type="text" name="Genre" @bind-value="PerformerToAddDto.Genre" @bind-value:event="onchange" />
+                </div>
+                <div>
+                    <label>&nbsp;</label>
+                    <button type="button" @onclick="(async() => await AddPerformer())">Submit</button>
+                </div>
+            </fieldset>
+        </form>
+    </body>
 }

@@ -1,5 +1,41 @@
-﻿<h3>PerformerSingle</h3>
+﻿@page "/PerformerDetails/{Id:int}"
+@inject NavigationManager navManager
+@inherits PerformerSingleBase
 
-@code {
 
-}
+<h3>View @Performer.Name</h3>
+<body>
+    <form method="post">
+        <fieldset>
+            <legend>Add Show</legend>
+            <div>
+                <label for="fName">Performer name:</label>
+                <input type="text" name="fName" @bind-value="Performer.Name" @bind-value:event="onchange" />
+            </div>
+            <div>
+                <label for="Description">Description:</label>
+                <input type="text" name="Description" @bind-value="Performer.Description" @bind-value:event="onchange" />
+            </div>
+            <div>
+                <label for="ImageFilePath">ImageFilePath:</label>
+                <input type="text" name="ImageFilePath" @bind-value="Performer.ImageFilePath" @bind-value:event="onchange" />
+            </div>
+            <div>
+                <label for="CountryOfOrigin">CountryOfOrigin:</label>
+                <input type="text" name="CountryOfOrigin" @bind-value="Performer.CountryOfOrigin" @bind-value:event="onchange" />
+            </div>
+            <div>
+                <label for="Type">Type:</label>
+                <input type="text" name="Type" @bind-value="Performer.Type" @bind-value:event="onchange" />
+            </div>
+            <div>
+                <label for="Genre">Genre:</label>
+                <input type="text" name="Genre" @bind-value="Performer.Genre" @bind-value:event="onchange" />
+            </div>
+            @*<div>
+                <label>&nbsp;</label>
+                <button type="button" @onclick="(async() => await AddPerformer())">Submit</button>
+            </div>*@
+        </fieldset>
+    </form>
+</body>

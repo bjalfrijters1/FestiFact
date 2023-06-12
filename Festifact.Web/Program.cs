@@ -11,5 +11,6 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7224") });
 builder.Services.AddScoped<IFestivalService, FestivalService>();
 builder.Services.AddScoped<IShowService, ShowService>();
+builder.Services.AddScoped<IPerformerService, PerformerService>();
 
 await builder.Build().RunAsync();
