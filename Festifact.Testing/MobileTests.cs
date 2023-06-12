@@ -52,5 +52,6 @@ namespace Festifact.Testing
 
             Assert.True(showListVM.Shows?.Count > 0);
         }
+
     }
 }

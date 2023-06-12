@@ -16,6 +16,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Id</th>
                 <th>Name</th>
                 <th>Description</th>
                 <th>Location</th>
@@ -29,6 +30,7 @@
             @foreach (var show in Shows)
             {
                 <tr>
+                    <td>@show.Id</td>
                     <td>@show.Name</td>
                     <td>@show.Description</td>
                     <td>@show.LocationName</td>

@@ -1,0 +1,59 @@
+﻿@page "/locations"
+@using Festifact.Models.Dtos;
+@inherits LocationsBase
+
+<PageTitle>Locations</PageTitle>
+
+<h1>Locations</h1>
+<p>This table contains location objects</p>
+
+@if (Locations == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    @inject NavigationManager navManager;
+<table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Capacity</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var location in Locations)
+            {
+                <tr>
+                    <td>@location.Id</td>
+                    <td>@location.Name</td>
+                    <td>@location.Capacity</td>
+                    <td><button @onclick="@(() => navManager.NavigateTo("/LocationDetails/"+@location.Id))">Details</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h3>Add a new location...</h3>
+    <body>
+        <form method="post">
+            <fieldset>
+                <legend>Add Location</legend>
+                <div>
+                    <label for="fName">Location name:</label>
+                    <input type="text" name="fName" @bind-value="LocationToAddDto.Name" @bind-value:event="onchange" />
+                </div>
+                <div>
+                    <label for="Capacity">Capacity:</label>
+                    <input type="number" name="Capactiy" @bind-value="LocationToAddDto.Capacity" @bind-value:event="onchange" />
+                </div>
+                <div>
+                    <label>&nbsp;</label>
+                    <button type="button" @onclick="(async() => await AddLocation())">Submit</button>
+                </div>
+            </fieldset>
+        </form>
+    </body>
+}

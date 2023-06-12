@@ -80,16 +80,16 @@ namespace Festifact.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<FestivalPerformanceDto>> PostFP([FromBody] FestivalPerformanceToAddDto fpToAddDto, int fId, int sId)
+        public async Task<ActionResult<FestivalPerformanceDto>> PostFP([FromBody] FestivalPerformanceToAddDto fpToAddDto)
         {
             try
             {
-                var newFP = await this.fpRepo.Insert(fpToAddDto);
-                var festival = await this.festivalRepo.GetFestival(fId);
-                var show = await this.showRepo.GetShow(sId);
+                
+                var festival = await this.festivalRepo.GetFestival(fpToAddDto.FestivalId);
+                var show = await this.showRepo.GetShow(fpToAddDto.ShowId);
 
                 
-                if(newFP == null)
+                if(festival == null || show == null)
                 {
                     return NoContent();
                 }
@@ -97,6 +97,7 @@ namespace Festifact.Api.Controllers
                 //check for date overlap
                 if (show.StartDateTime >= festival.StartDate && show.EndDateTime <= festival.EndDate)
                 {
+                    var newFP = await this.fpRepo.Insert(fpToAddDto);
                     var newFPDto = newFP.ConvertToDto(festival, show);
 
                     return CreatedAtAction(nameof(GetFP), new { id = newFPDto.Id }, newFPDto);

@@ -22,8 +22,11 @@ namespace Festifact.Web.Pages
         {
             try
             {
-
-                var showDto = await _showService.PostShow(ShowToAddDto);
+                if (ShowToAddDto.FilmId == 0)
+                {
+                    ShowToAddDto.FilmId = null;
+                    var showDto = await _showService.PostShow(ShowToAddDto);
+                }
             }
             catch (Exception)
             {

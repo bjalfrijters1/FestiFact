@@ -160,6 +160,37 @@ namespace Festifact.Web.Services
             }
         }
 
+        public async Task<FestivalPerformanceDto> PostFestivalPerformance(FestivalPerformanceToAddDto festivalPerformanceToAddDto)
+        {
+            Uri uri = new Uri(string.Format(Constants.RestUrl, "FP", string.Empty));
+
+            try
+            {
+                var response = await _client.PostAsJsonAsync<FestivalPerformanceToAddDto>(uri, festivalPerformanceToAddDto);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        return default(FestivalPerformanceDto);
+                    }
+
+                    return await response.Content.ReadFromJsonAsync<FestivalPerformanceDto>();
+
+                }
+                else
+                {
+                    var message = await response.Content.ReadAsStringAsync();
+                    throw new Exception($"Http status:{response.StatusCode} Message -{message}");
+                }
+            }
+            catch (Exception)
+            {
+                //Log exception
+                throw;
+            }
+        }
+
         public async Task<FestivalDto> PutFestival(FestivalDto festival)
         {
             Uri uri = new Uri(string.Format(Constants.RestUrl, "Festival", string.Empty));

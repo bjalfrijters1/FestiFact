@@ -94,10 +94,10 @@ namespace Festifact.Api.Controllers
                 var showsWithPerformer = shows.Where(s => s.PerformerId == showToAddDto.PerformerId);
                 foreach (var p in showsWithPerformer)
                 {
-                    if (p.StartDateTime < showToAddDto.EndDateTime)
+                    if (showToAddDto.EndDateTime > p.StartDateTime && showToAddDto.StartDateTime < p.EndDateTime)
                         availability = false;
 
-                    if (p.EndDateTime < showToAddDto.StartDateTime)
+                    if (showToAddDto.StartDateTime < p.EndDateTime && showToAddDto.EndDateTime > p.StartDateTime)
                         availability = false;
 
                 }
@@ -105,10 +105,10 @@ namespace Festifact.Api.Controllers
                 var showsWithLocation = shows.Where(s => s.LocationId == showToAddDto.LocationId);
                 foreach (var l in showsWithLocation)
                 {
-                    if (l.StartDateTime < showToAddDto.EndDateTime)
+                    if (showToAddDto.EndDateTime > l.StartDateTime && showToAddDto.StartDateTime < l.EndDateTime)
                         availability = false;
 
-                    if (l.EndDateTime < showToAddDto.StartDateTime)
+                    if (showToAddDto.StartDateTime < l.EndDateTime && showToAddDto.EndDateTime > l.StartDateTime)
                         availability = false;
                 }
 

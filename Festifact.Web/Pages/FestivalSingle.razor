@@ -2,10 +2,38 @@
 @inject NavigationManager navManager
 @inherits FestivalSingleBase
 
-<h1>Edit festival</h1>
+<h1>Festival Performances</h1>
 
+@inject NavigationManager navManager;
 <body>
-    <image src="@Banner" style="width:500px;height:600px;"></image>
+<image src="@Banner" style="width:500px;height:600px;"></image>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>FestivalId</th>
+            <th>ShowId</th>
+            <th>Festival Name</th>
+            <th>Festival description</th>
+            <th>Show name</th>
+            <th>Show description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var fp in FestivalPerformances)
+        {
+            <tr>
+                <td>@fp.Id</td>
+                <td>@fp.FestivalId</td>
+                <td>@fp.ShowId</td>
+                <td>@fp.FName</td>
+                <td>@fp.FDescription</td>
+                <td>@fp.SName</td>
+                <td>@fp.SDecription</td>
+            </tr>
+        }
+    </tbody>
+</table>
     <form method="post">
         <fieldset>
             <div>
@@ -51,4 +79,17 @@
     <h5>Tickets Available: @Statistics.TicketsAvailable</h5>
     <h5>Amount of shows: @amountOfShows</h5>
     <h5>Amount of performers: @amountOfPerformers</h5>
+
+    <form method="post">
+        <fieldset>
+        <div>
+            <label for="Id">Show id:</label>
+            <input type="number" name="Id" @bind-value="ShowId" @bind-value:event="onchange" />
+        </div>
+        <div>
+            <label>&nbsp;</label>
+            <button type="button" @onclick="(async() => await AddShowToFestival())">Submit</button>
+        </div>
+        </fieldset>
+    </form>
 </body>

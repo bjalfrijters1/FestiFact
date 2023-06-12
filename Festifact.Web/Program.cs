@@ -12,5 +12,6 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https:/
 builder.Services.AddScoped<IFestivalService, FestivalService>();
 builder.Services.AddScoped<IShowService, ShowService>();
 builder.Services.AddScoped<IPerformerService, PerformerService>();
+builder.Services.AddScoped<ILocationService, LocationService>();
 
 await builder.Build().RunAsync();

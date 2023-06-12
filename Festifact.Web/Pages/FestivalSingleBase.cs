@@ -18,11 +18,13 @@ namespace Festifact.Web.Pages
 
         public string Banner { get; set; } = null;
         public FestivalDto Festival { get; set; } = new();
-        public IEnumerable<FestivalPerformanceDto> FestivalPerformances { get; set; }
-        public int amountOfShows { get; set; }
-        public int amountOfPerformers { get; set; }
+        public IEnumerable<FestivalPerformanceDto>? FestivalPerformances { get; set; }
+        public int amountOfShows { get; set; } = 0;
+        public int amountOfPerformers { get; set; } = 0;
+        public FestivalPerformanceToAddDto FestivalPerformanceToAdd { get; set; } = new();
         public StatisticsDto Statistics { get; set; } = new();
-        public string ErrorMessage { get; set; }
+        public string ErrorMessage { get; set; } = null;
+        public int ShowId { get; set; } = 0;
 
         protected override async Task OnInitializedAsync()
         {
@@ -37,6 +39,8 @@ namespace Festifact.Web.Pages
                     Banner = $"images/{Festival.Banner}";
                 }
                 await GetStatistics();
+                
+                
             }
             catch (Exception ex)
             {
@@ -75,6 +79,21 @@ namespace Festifact.Web.Pages
             }
             amountOfPerformers = performerIds.Count();
 
+        }
+
+        protected async Task AddShowToFestival()
+        {
+            try
+            {
+                FestivalPerformanceToAdd.ShowId = ShowId;
+                FestivalPerformanceToAdd.FestivalId = (int)Festival.Id;
+                await this.FestivalService.PostFestivalPerformance(FestivalPerformanceToAdd);
+            }
+            catch (Exception ex)
+            {
+
+                ErrorMessage = ex.Message;
+            }
         }
     }
 }
