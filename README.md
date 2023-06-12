@@ -12,8 +12,6 @@
 
 You can use both an Android and a WinUI application to run the Mobile project.
 
-
-#################
 You may run into some issues, mainly when mailing stuff,
 mailing defaults to ethereal.email, 
 
